@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -11,43 +11,56 @@
 
 SBC üzerinde bir sorun oluştuğunda (Çağrı düşmesi, ses gelmemesi vb.) en önemli yardımcınız cihazın ürettiği loglardır.
 
-## 📌 Message Log (SIP Log) Nedir?
+## 📌 SIP Log Anatomisi: Bir INVITE Paketini Okumak
 
-Cihazın üzerinden geçen tüm SIP paketlerini (INVITE, 200 OK, BYE vb.) anlık olarak görmenizi sağlar. Sorun gidermede **ilk bakılması gereken** yerdir.
+Bir SIP mesajı üç ana bölümden oluşur. Loglarda bunları ayırt edebilmek, sorunun kaynağını bulmanızı sağlar:
+1.  **Request Line:** Mesajın tipi ve hedefi (Örn: `INVITE sip:90212...`).
+2.  **SIP Headers:** Kim arıyor (`From`), kime gidiyor (`To`), hangi yoldan geçiyor (`Via`).
+3.  **SDP (Body):** Sesin hangi IP'den, hangi porttan ve hangi Codec (G.711, G.729) ile taşınacağı bilgisi.
 
-### Message Log Nasıl Alınır? (v7.20)
-**Menü:** `Troubleshoot > Message Log`
-1.  **Log Type:** `SBC` seçilir.
-2.  **Start:** Butonuna basıldığında loglar akmaya başlar.
-3.  **Stop:** Kaydı durdurur.
-4.  **Save:** Logları bilgisayarınıza indirir (Genellikle `.txt` formatında).
+## 📌 Ladder Diagram (Akış Diyagramı) Analizi
 
-## 📌 Syslog Nedir?
+AudioCodes **Syslog Viewer** veya **Wireshark** kullanarak çağrı akışını bir merdiven diyagramı gibi görebilirsiniz. Sağlıklı bir çağrı akışı şöyledir:
+1.  **INVITE:** Çağrı başlatma talebi.
+2.  **100 Trying:** "Mesajı aldım, üzerinde çalışıyorum."
+3.  **18x Ringing/Session Progress:** "Karşı tarafın telefonu çalıyor."
+4.  **200 OK:** "Aboneler cevap verdi, görüşme başlıyor."
+5.  **ACK:** Bağlantının kurulduğunun teyidi.
+6.  **BYE:** Görüşmenin sonlanması.
 
-Cihazın iç dünyasında neler olup bittiğini (Donanım hataları, lisans uyarıları, routing kararları) gösteren daha detaylı bir log türüdür.
+## 📌 Derinlemesine Hata Analizi (Deep Troubleshooting)
 
-### Örnek Syslog Satırı
-`12:05:01 SBC-Nolto-Partner-800 user.notice: call_id 102 established by mrzcn-expert-session`
+### 1. "Ses Gitmiyor / Gelmiyor" (One-way Audio)
+Eğer loglarda SIP akışı normalse ama ses yoksa, sorun **Medya (RTP)** katmanındadır.
+*   **Logda ne aranır?** SDP içindeki `c=IN IP4 192.168.x.x` satırına bakın. Eğer burada bir iç ağ IP'si (Private IP) internete gönderiliyorsa ses tek taraflı kalır.
+*   **Çözüm:** IP Profile içinde `SBC Media Anchor` ayarını kontrol edin.
 
-### Syslog Ayarları
-**Menü:** `Setup > Device > Troubleshooting > Syslog Settings`
-*   **Syslog Server:** Logların gönderileceği bilgisayarın IP adresi. (Harici bir Syslog Viewer yazılımı kullanılması önerilir).
-*   **Debug Level:** Genellikle `5` veya sorun derinleşirse `6` yapılır.
+### 2. "488 Not Acceptable Here" (Codec Hatası)
+Bu hata genellikle iki tarafın ortak bir dilde (Codec) anlaşamadığını gösterir.
+*   **Logda ne aranır?** `Invite` paketindeki `m=audio` satırındaki rakamları karşılaştırın (Örn: 0: PCMU, 8: PCMA, 18: G.729).
+*   **Çözüm:** Coder Group ayarlarını güncelleyin veya Transcoding lisansınızı kontrol edin.
 
-## 📌 Hata Kodlarını Anlamak
+### 3. "503 Service Unavailable"
+Bu hata genellikle hedef sistemin kapalı olduğunu veya SBC'nin hedefe ulaşamadığını gösterir.
+*   **Logda ne aranır?** `Proxy Set` durumuna bakın. Eğer Proxy `Inoperative` görünüyorsa, SBC o yöne çağrı göndermez.
 
-SBC üzerinde sıkça karşılaşacağınız SIP hata kodları:
+## 📌 PCAP Alma ve Wireshark Analizi
 
-*   **404 Not Found:** Routing tablosunda eşleşen bir kural bulunamadı veya hedef sunucu numarayı tanımıyor.
-*   **403 Forbidden:** IP Group veya Classification kuralı tarafından çağrı reddedildi (Güvenlik engeli).
-*   **488 Not Acceptable Here:** Codec uyumsuzluğu (Örn: Bir taraf sadece G.729 istiyor ama SBC sadece G.711 gönderiyor).
-*   **503 Service Unavailable:** Lisans kapasitesi dolmuş veya hedef sunucu kapalı.
+AudioCodes cihazları, üzerlerinden geçen trafiği **Wireshark** formatında (.pcap) dışarı aktarabilir.
+**Menü:** `Setup > Device > Troubleshooting > Network Capture`
+*   **Kullanım:** Sorunu SBC arayüzünden çözemediğinizde, trafiği capture edip Wireshark'ın "Telephony > VoIP Calls" menüsünden tüm ses paketlerini ve jitter/paket kaybı değerlerini analiz edebilirsiniz.
+
+## 📌 Log Seviyeleri ve Performans Etkisi
+
+*   **Error (Seviye 3):** Sadece kritik hatalar. (Normal çalışma için ideal).
+*   **Notice/Warning (Seviye 4-5):** Standart loglama.
+*   **Detailed/Debug (Seviye 6):** En derin detaylar. (Sadece sorun çözerken açılmalıdır; yüksek trafik altında CPU'yu yorabilir).
 
 > [!TIP]
-> AudioCodes loglarını daha rahat okumak için AudioCodes'un ücretsiz **"Syslog Viewer"** yazılımını kullanabilirsiniz. Bu yazılım SIP paketlerini bir akış diyagramı (Ladder Diagram) şeklinde gösterir.
+> **Syslog Viewer Filtreleme:** Binlerce satır arasından kendi çağrınızı bulmak için `Call-ID` veya `User-Part` (Telefon numarası) filtresini kullanın.
 
 > [!IMPORTANT]
-> Log alırken filtreleme (Filter) özelliğini kullanarak sadece belirli bir IP'den veya numaradan gelen çağrıları takip edebilirsiniz. Bu, yoğun trafikli cihazlarda karmaşayı önler.
+> AudioCodes teknik destek ekibine (Nolto Partner Destek) bilet açarken, hem **.ini** konfigürasyon dosyasını hem de sorunun yaşandığı ana ait **Syslog** kaydını göndermeniz süreci hızlandıracaktır.
 
 
 ---
