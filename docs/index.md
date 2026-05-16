@@ -67,6 +67,7 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 *   [Regex (Düzenli İfadeler) Kütüphanesi](08-ekler-ve-referanslar/02-regex-kutuphanesi.md)
 *   [INI Dosyası ve CLI Referansı](08-ekler-ve-referanslar/03-ini-dosyasi-referansi.md)
 *   [Faks (T.38) Yapılandırma Rehberi](08-ekler-ve-referanslar/04-faks-t38-yapilandirma.md)
+*   [Faydalı Araçlar ve Yardımcı Yazılımlar (Utilities)](08-ekler-ve-referanslar/05-faydali-araclar-ve-utility.md)
 
 ---
 

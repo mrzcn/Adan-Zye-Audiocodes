@@ -46,6 +46,7 @@ Kitabı sırasıyla takip etmeniz önerilir:
 ### 🔴 4. Referanslar ve Ekler
 *   [SIP Terimler Sözlüğü](docs/08-ekler-ve-referanslar/01-sip-terimler-sozlugu.md)
 *   [Regex Kütüphanesi](docs/08-ekler-ve-referanslar/02-regex-kutuphanesi.md)
+*   [Faydalı Araçlar ve Yazılımlar](docs/08-ekler-ve-referanslar/05-faydali-araclar-ve-utility.md)
 *   [Hata Kodları ve Sorun Giderme](docs/07-bakim-ve-sorun-giderme/01-syslog-ve-message-log-okuma.md)
 
 ---
