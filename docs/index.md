@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -35,10 +35,11 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 *   [Media Realms (RTP Port Yönetimi)](03-cekirdek-yapilandirma/02-media-realms.md)
 *   [SIP Interfaces (Sinyalleşme Uçları)](03-cekirdek-yapilandirma/03-sip-interfaces.md)
 
-### 🚦 Bölüm 4: Sinyalleşme ve Yönlendirme
-*   [Proxy Sets ve Keep-Alive (OPTIONS)](04-sinyallesme-ve-yonlendirme/01-proxy-sets-ve-keep-alive.md)
-*   [IP Groups: Yapılandırmanın Kalbi](04-sinyallesme-ve-yonlendirme/02-ip-groups.md)
-*   [IP-to-IP Routing: Trafik Polisliği](04-sinyallesme-ve-yonlendirme/03-ip-to-ip-routing.md)
+### 🚀 Bölüm 4: Sinyalleşme ve Yönlendirme
+*   [Proxy Sets ve Keep-Alive Mekanizması](04-sinyallesme-ve-yonlendirme/01-proxy-sets-ve-keep-alive.md)
+*   [IP Groups: Mantıksal Gruplama](04-sinyallesme-ve-yonlendirme/02-ip-groups.md)
+*   [IP-to-IP Routing: Çağrı Trafik Yönetimi](04-sinyallesme-ve-yonlendirme/03-ip-to-ip-routing.md)
+*   [High Availability (HA): Yedeklilik Senaryoları](04-sinyallesme-ve-yonlendirme/04-high-availability-ha.md)
 
 ### 🛡 Bölüm 5: Güvenlik ve Medya
 *   [IP Profiles: Şeffaflık ve Başlık Ayarları](05-guvenlik-ve-medya/01-ip-profiles.md)

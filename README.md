@@ -37,6 +37,7 @@ Kitabı sırasıyla takip etmeniz önerilir:
 ### 🟡 3. Teknik Yapılandırma ve Uygulama
 *   [IP Arayüzleri ve VLAN](docs/03-cekirdek-yapilandirma/01-ip-interfaces-ve-vlan.md)
 *   [Yönlendirme (Routing) Mantığı](docs/04-sinyallesme-ve-yonlendirme/03-ip-to-ip-routing.md)
+*   [High Availability (HA) Yedeklilik](docs/04-sinyallesme-ve-yonlendirme/04-high-availability-ha.md)
 *   [Güvenlik (SBC Hardening)](docs/05-guvenlik-ve-medya/04-hardening-ve-dos-korumasi.md)
 
 ### 🔴 4. Referanslar ve Ekler
