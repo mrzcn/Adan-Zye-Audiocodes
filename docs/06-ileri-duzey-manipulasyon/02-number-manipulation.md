@@ -1,0 +1,38 @@
+# Number Manipulation
+
+Number Manipulation, arayan (Calling) veya aranan (Called) numaraların formatını değiştirmek için kullanılır. (Örn: Numara başına `0` eklemek veya `+90`'ı silmek).
+
+## 📌 Neden Kullanılır?
+
+*   **Format Uyumu:** Genesys numaraları `+90` formatında gönderirken, operatör Gateway'i numaraları başında `0` olacak şekilde bekleyebilir.
+*   **Gizleme:** Arayan numaranın son 4 hanesini maskelemek için kullanılabilir.
+*   **Yönlendirme:** Gelen numarayı manipüle ederek farklı bir hedefe yönlendirilmesini sağlamak için.
+
+## 📌 Yapılandırma Adımları (v7.20)
+
+AudioCodes'ta numara manipülasyonu genellikle iki yerde yapılır:
+
+### 1. Inbound/Outbound IP-to-IP Manipulation
+**Menü:** `Setup > Signaling & Media > SBC > Manipulation > Outbound Manipulation` (Veya Inbound)
+
+Parametreler:
+1.  **Name:** İsim.
+2.  **Source IP Group:** Hangi gruptan gelen çağrılar için geçerli.
+3.  **Destination IP Group:** Hangi gruba giden çağrılar için geçerli.
+4.  **Destination Username Prefix:** Hangi numara ile başlarsa (Örn: `+90`).
+5.  **Remove From Left:** Soldan kaç hane silinecek (Örn: `3` hane silinirse `+90` gider).
+6.  **Prefix to Add:** Başa ne eklenecek (Örn: `0`).
+
+### 2. Dest/Source Prefix Menüleri
+Bu menüler daha basit prefix ekleme/çıkarma işlemleri için kullanılır.
+
+## 📌 Regex (Düzenli İfadeler) Kullanımı
+
+AudioCodes, numara manipülasyonunda gelişmiş Regex kurallarını destekler. Örneğin:
+*   `^(.*)$` -> `0$1` (Tüm numaraların başına 0 ekle).
+
+> [!TIP]
+> Numara manipülasyonunun çalışıp çalışmadığını test etmek için **Troubleshoot > Test Tools > Dial Plan Search** aracını kullanabilirsiniz. Girdiğiniz bir numaranın kurallardan geçtikten sonra neye dönüştüğünü size simüle eder.
+
+> [!NOTE]
+> IP-to-IP Routing kurallarından **önce** mi yoksa **sonra** mı manipülasyon yapılacağı önemlidir. Genellikle Inbound manipülasyon routing'den önce, Outbound manipülasyon ise routing'den sonra uygulanır.
