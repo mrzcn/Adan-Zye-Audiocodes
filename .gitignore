@@ -1,0 +1,21 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Documentation build files
+site/
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary Files
+tmp/
+temp/
+*.log
