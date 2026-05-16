@@ -30,8 +30,8 @@ InterfaceTable 0 = "Inside_IF", 192.168.1.10, 24, 192.168.1.1, 10, 10;
 ### Proxy Set Ekleme
 ```ini
 [ ProxySet ]
-FORMAT ProxySet_Index = ProxySet_ProxySetName, ProxySet_SbcIPv4SipInterfaceName, ProxySet_ProxyKeepAliveMode;
-ProxySet 1 = "Genesys_Proxy", "Inside_IF", 1;
+FORMAT ProxySet_Index = ProxySet_ProxySetName, ProxySet_SbcIPv4SipInterfaceName, ProxySet_ProxyKeepAliveMode, ProxySet_Description;
+ProxySet 1 = "Nolto_Partner_Proxy", "Inside_IF", 1, "Nolto_Teknoloji_AS_Config";
 [\ProxySet]
 ```
 
@@ -54,3 +54,15 @@ SBC# write
 
 > [!IMPORTANT]
 > INI dosyası üzerinde manuel değişiklik yapmak risklidir. Bir sütun hatası tüm tabloyu bozabilir. Her zaman değişiklik öncesi çalışan bir yedek bulundurun.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

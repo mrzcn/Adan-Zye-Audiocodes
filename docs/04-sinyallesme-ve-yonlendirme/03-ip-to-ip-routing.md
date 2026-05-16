@@ -1,4 +1,4 @@
-# IP-to-IP Routing
+﻿# IP-to-IP Routing
 
 IP-to-IP Routing, SBC'nin trafiği bir IP Group'tan alıp diğerine nasıl yönlendireceğini belirlediğiniz trafik polisidir.
 
@@ -45,3 +45,15 @@ Tablodaki kurallar **yukarıdan aşağıya** taranır. İlk eşleşen kural uygu
 
 > [!TIP]
 > Eğer çağrı "404 Not Found" veya "No Route Found" hatasıyla başarısız oluyorsa, giden bacakta **Classification** kurallarını veya Routing tablosundaki kaynak/hedef eşleşmelerini kontrol edin.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

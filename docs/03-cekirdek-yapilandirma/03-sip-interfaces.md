@@ -1,4 +1,4 @@
-# SIP Interfaces
+﻿# SIP Interfaces
 
 SIP Interfaces, SBC'nin SIP sinyalleşmesini (INVITE, REGISTER vb.) hangi IP, hangi protokol (UDP/TCP/TLS) ve hangi port üzerinden dinleyeceğini belirlediğiniz uç noktalardır.
 
@@ -32,3 +32,15 @@ Parametreler:
 
 > [!WARNING]
 > Eğer Genesys veya Operatör tarafı `TLS` kullanıyorsa, SIP Interface üzerinde TLS portunu açmanız yetmez; ayrıca cihazın **Security** menüsünden geçerli bir SSL sertifikası yüklenmiş olmalıdır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

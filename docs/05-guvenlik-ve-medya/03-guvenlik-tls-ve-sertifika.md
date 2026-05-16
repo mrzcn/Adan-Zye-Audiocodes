@@ -1,4 +1,4 @@
-# Güvenlik, TLS ve Sertifika Yönetimi
+﻿# Güvenlik, TLS ve Sertifika Yönetimi
 
 SBC'nin en önemli görevlerinden biri ses altyapısını dış saldırılara karşı korumaktır. Bu bölümde temel güvenlik önlemlerini ve şifreli sinyalleşmeyi (TLS) inceleyeceğiz.
 
@@ -45,3 +45,15 @@ v7.20 sürümünün son yamaları ile birlikte TLS 1.3 desteği gelmiştir. Güv
 
 > [!TIP]
 > Test aşamasında sertifika hatalarını (Self-signed certificate vb.) göz ardı etmek için TLS Context ayarlarında **Verify Remote Certificate** seçeneğini `No` yapabilirsiniz. Ancak canlı ortamda güvenlik için bu `Yes` olmalıdır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

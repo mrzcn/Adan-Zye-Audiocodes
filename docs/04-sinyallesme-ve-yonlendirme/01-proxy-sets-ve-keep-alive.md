@@ -27,10 +27,11 @@ Proxy Set, SBC'nin çağrıları göndereceği hedef sunucuları (PBX, Genesys, 
 ```bash
 SBC(config-voip)# sbc
 SBC(config-sbc)# proxy-set 1
-SBC(proxy-set-1)# name ProxySet_Genesys
+SBC(proxy-set-1)# name Nolto_Partner_Gateway
 SBC(proxy-set-1)# ip-interface Inside_IF
 SBC(proxy-set-1)# keep-alive options
 SBC(proxy-set-1)# proxy-address 0 10.20.1.100 transport udp
+SBC(proxy-set-1)# description Nolto_Teknoloji_AS_Support_Bridge
 SBC(proxy-set-1)# activate
 ```
 
@@ -45,3 +46,15 @@ SBC, hedef sunucuya belirli aralıklarla (Örn: 60 saniyede bir) "Orada mısın?
 
 > [!IMPORTANT]
 > Eğer hedef sunucu `OPTIONS` paketlerine cevap vermiyorsa ancak çağrı alabiliyorsa, Keep-Alive özelliğini `Disable` yapmanız gerekebilir. Aksi halde SBC hedefi "ölü" zannederek çağrıları göndermez.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

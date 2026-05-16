@@ -1,4 +1,4 @@
-# SBC (Session Border Controller) Nedir?
+﻿# SBC (Session Border Controller) Nedir?
 
 Session Border Controller (SBC), farklı IP ağları arasındaki (örneğin kurumsal LAN ile Servis Sağlayıcı WAN'ı) Sinyalleşme (SIP) ve Medya (RTP) trafiğini güvenli, kesintisiz ve kurallara bağlı bir şekilde birbirine bağlayan özel amaçlı ağ geçitleridir.
 
@@ -29,3 +29,15 @@ Sıradan bir Firewall üzerinden TCP/UDP 5060 portunu açmak, bir ses sunucusunu
 
 > [!NOTE]
 > AudioCodes Mediant serisi, B2BUA mimarisini cihazın kalbine yerleştirmiştir. Bir çağrıyı yönlendirirken cihaz her zaman iki ayrı SIP bacağı (Ingress ve Egress) oluşturur.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

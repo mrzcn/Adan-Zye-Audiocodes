@@ -1,4 +1,4 @@
-# Media Realms
+﻿# Media Realms
 
 Media Realms, ses (RTP) trafiğinin hangi IP bacağından akacağını ve hangi port aralıklarını kullanacağını belirleyen mantıksal bölümlerdir. 
 
@@ -32,3 +32,15 @@ AudioCodes SBC varsayılan olarak medyanın kendi üzerinden geçmesini sağlar.
 
 > [!NOTE]
 > RTP port aralıklarının her zaman **çift sayı** (Örn: 6000, 6002...) üzerinden ilerlediğini unutmayın. Her ses görüşmesi bir RTP (ses taşıma) ve bir RTCP (kontrol) portu kullanır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

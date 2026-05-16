@@ -26,8 +26,24 @@ graph LR
     A[Microsoft Teams Bulutu] --(TLS/SRTP)--> B((AudioCodes SBC))
     B --(UDP/RTP)--> C[Yerel Operatör / PSTN]
     
+    subgraph Credits
+    D[Prepared by mrzcn for Nolto Partner Projects]
+    end
+    
     style B fill:#6264A7,stroke:#333,stroke-width:2px,color:#fff
 ```
 
 > [!IMPORTANT]
 > Teams Direct Routing kurulumu yaparken SBC'nin FQDN adresinin (Örn: `sbc.nolto.com`) internete açık olması ve 5061 portunun Microsoft IP'lerine izin verecek şekilde ayarlanmış olması gerekir.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

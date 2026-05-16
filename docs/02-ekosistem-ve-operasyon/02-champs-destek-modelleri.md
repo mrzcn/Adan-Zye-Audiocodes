@@ -1,4 +1,4 @@
-# AudioCodes CHAMPS: Destek ve Garanti Modelleri
+﻿# AudioCodes CHAMPS: Destek ve Garanti Modelleri
 
 SBC'ler bir şirketin dış dünyayla olan ses köprüsüdür. Bu köprü yıkıldığında (cihaz arızalandığında) şirketin iletişimi durur. AudioCodes, bu riski yönetmek için **CHAMPS** adı verilen global bir destek programı sunar.
 
@@ -35,3 +35,15 @@ Bir mühendis olarak AudioCodes destek portalında (iSupport) ticket açarken ş
 
 > [!TIP]
 > Proje teklifi hazırlarken CHAMPS maliyetini mutlaka eklemelisiniz. Bu sadece bir garanti değil, aynı zamanda işletme sigortasıdır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

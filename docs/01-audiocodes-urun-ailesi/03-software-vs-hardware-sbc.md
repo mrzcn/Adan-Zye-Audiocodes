@@ -1,4 +1,4 @@
-# Software vs. Hardware SBC: Avantaj ve Dezavantajlar
+﻿# Software vs. Hardware SBC: Avantaj ve Dezavantajlar
 
 Yeni bir projeye başlarken verilmesi gereken en kritik kararlardan biri şudur: "Fiziksel bir kutu (Hardware) mu almalıyız, yoksa sanal sunucuya (Software - Mediant VE) mı kurmalıyız?"
 
@@ -45,3 +45,15 @@ Yeni bir projeye başlarken verilmesi gereken en kritik kararlardan biri şudur:
 
 > [!IMPORTANT]
 > Eğer projenizde bakır kabloyla gelen bir E1 hattı veya duvardaki analog telefonlar varsa **Donanım** almak zorundasınız. Eğer her şey SIP üzerinden (Pure IP) dönüyorsa **Software (VE)** modern ve mantıklı tercihtir.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

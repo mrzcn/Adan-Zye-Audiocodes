@@ -1,4 +1,4 @@
-# Donanım, Sanal (VE) ve Lisanslama
+﻿# Donanım, Sanal (VE) ve Lisanslama
 
 AudioCodes Mediant serisi, ihtiyaca göre fiziksel donanım veya sanal sunucu üzerinde çalışan esnek bir mimari sunar. Bu bölümde Mediant 800 özelinde donanım yapısını ve lisanslama mantığını inceleyeceğiz.
 
@@ -32,3 +32,15 @@ AudioCodes cihazlarında kapasite lisansla belirlenir. En kritik lisans kalemler
 
 > [!IMPORTANT]
 > AudioCodes lisansları genellikle cihazın seri numarasına (MAC adresine) bağlıdır. Sanal (VE) sürümlerde ise "Hardware ID" veya Cloud Instance ID üzerinden lisanslama yapılır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

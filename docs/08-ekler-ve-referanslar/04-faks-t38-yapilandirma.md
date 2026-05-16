@@ -1,4 +1,4 @@
-# Faks (T.38) Yapılandırması
+﻿# Faks (T.38) Yapılandırması
 
 IP ağları üzerinden faks gönderimi (FoIP), paket gecikmelerine karşı çok hassastır. AudioCodes SBC'de faks trafiğini başarılı bir şekilde yönetmek için temel kavramlar:
 
@@ -30,3 +30,15 @@ SBC(ip-profile-1)# activate
 
 > [!TIP]
 > Eğer T.38 ile sorun yaşıyorsanız, geçici bir çözüm olarak her iki uçta da `G.711 Pass-through` modunu deneyebilirsiniz. Bu modda codec her zaman G.711 olmalı ve VAD (Voice Activity Detection) kapalı olmalıdır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

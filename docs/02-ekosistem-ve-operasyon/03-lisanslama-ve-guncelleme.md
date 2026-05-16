@@ -1,4 +1,4 @@
-# Lisanslama ve Güncelleme Mantığı
+﻿# Lisanslama ve Güncelleme Mantığı
 
 AudioCodes SBC'ler "Kullandığın kadar öde" mantığıyla çalışan, yazılım tanımlı kapasiteye sahip cihazlardır. 
 
@@ -35,3 +35,15 @@ AudioCodes, cihazlarını sürekli günceller. Güncellemeler ikiye ayrılır:
 
 > [!IMPORTANT]
 > Cihazın CHAMPS desteği aktif değilse, AudioCodes portalından yeni firmware indirmenize sistem izin vermeyebilir.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

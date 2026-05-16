@@ -1,4 +1,4 @@
-# İlk Erişim ve Yönetim
+﻿# İlk Erişim ve Yönetim
 
 Yeni bir AudioCodes cihazını kutusundan çıkardığınızda veya fabrika ayarlarına döndürdüğünüzde yönetime başlamak için izlemeniz gereken standart adımlar mevcuttur.
 
@@ -39,3 +39,15 @@ AudioCodes v7.20 arayüzü üç ana bölüme ayrılmıştır:
 
 > [!TIP]
 > Şifreleri değiştirmek için **Setup > Device > Web & CLI User Accounts** menüsünü kullanabilirsiniz. Güvenlik için varsayılan `Admin` şifresini ilk kurulumda mutlaka değiştirin.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

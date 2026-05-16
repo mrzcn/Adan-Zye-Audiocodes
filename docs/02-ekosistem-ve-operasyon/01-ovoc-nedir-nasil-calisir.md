@@ -1,4 +1,4 @@
-# OVOC (One Voice Operations Center) Nedir?
+﻿# OVOC (One Voice Operations Center) Nedir?
 
 Bir şirketin sadece 1 tane SBC'si varken onu yönetmek kolaydır. Peki ya 50 farklı şubesinde 50 tane SBC'si varsa? İşte burada devreye AudioCodes'un merkezi yönetim ve izleme platformu olan **OVOC** girer.
 
@@ -32,3 +32,15 @@ Yeni mezun bir mühendis için OVOC kullanmak, "Reactive" (Sorun çıkınca müd
 
 > [!IMPORTANT]
 > OVOC'un kendisi de lisanslı bir üründür. Yönetilecek cihaz sayısına ve istenen özelliklere göre lisanslanır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

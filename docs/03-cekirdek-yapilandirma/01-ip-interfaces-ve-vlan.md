@@ -1,4 +1,4 @@
-# IP Interfaces ve VLAN Yapılandırması
+﻿# IP Interfaces ve VLAN Yapılandırması
 
 SBC bacaklarının mantıksal olarak birbirinden ayrılması, ağ güvenliği ve trafik yönetimi için temel adımdır. Yeni mezun bir mühendis için bunu bir "Router üzerindeki alt arayüzler" gibi düşünmek en kolay başlangıçtır.
 
@@ -57,3 +57,15 @@ Eğer tek bir fiziksel port üzerinden birden fazla ağa erişmek gerekiyorsa (T
 
 > [!TIP]
 > Eğer bir arayüzden dış ağa çıkış yapacaksanız, o arayüzün gateway adresini doğru girdiğinizden emin olun. Cihaz üzerinde birden fazla gateway varsa, varsayılan yönlendirme (Default Route) ayarlarını kontrol etmelisiniz.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

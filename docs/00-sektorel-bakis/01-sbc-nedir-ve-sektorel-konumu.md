@@ -1,4 +1,4 @@
-# SBC Nedir ve Sektörel Konumu?
+﻿# SBC Nedir ve Sektörel Konumu?
 
 Yeni mezun bir mühendis için ses teknolojileri dünyasına girerken sorulacak ilk soru şudur: "Neden sadece bir router veya firewall yetmiyor da SBC kullanıyoruz?"
 
@@ -31,3 +31,15 @@ Normal bir Firewall, SIP paketinin başlığını (Header) görebilir ama içind
 
 > [!NOTE]
 > Sektöre yeni giren biri için SBC öğrenmek; sadece network değil, aynı zamanda protokol analizi, güvenlik ve ses kalitesi yönetimi konularında uzmanlaşmak demektir.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

@@ -1,4 +1,4 @@
-# Firmware Güncelleme ve Yedekleme
+﻿# Firmware Güncelleme ve Yedekleme
 
 Cihazın kararlı çalışması ve yeni özellikleri kullanabilmesi için güncel firmware kullanımı ve düzenli yedekleme hayati önem taşır.
 
@@ -33,3 +33,15 @@ Eğer cihazda ciddi bir sorun olursa:
 
 > [!IMPORTANT]
 > Cihazı fiziksel olarak resetlemek için üzerindeki ufak "Reset" butonuna iğne yardımıyla 10 saniye basılı tutabilirsiniz. Bu işlem IP adresini de `192.168.0.2`ye döndürür.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

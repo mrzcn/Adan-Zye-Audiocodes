@@ -24,12 +24,13 @@ Yeni bir IP Group eklerken şu eşleştirmeler yapılır:
 ## 📌 CLI ile Yapılandırma
 ```bash
 SBC(config-sbc)# ip-group 1
-SBC(ip-group-1)# name IPG_Genesys
+SBC(ip-group-1)# name IPG_Nolto_Partner
 SBC(ip-group-1)# type server
 SBC(ip-group-1)# proxy-set 1
 SBC(ip-group-1)# ip-profile 1
 SBC(ip-group-1)# media-realm MR_LAN
 SBC(ip-group-1)# sip-interface 1
+SBC(ip-group-1)# description Nolto_Teknoloji_AS_Enterprise_Trunk
 SBC(ip-group-1)# activate
 ```
 
@@ -43,3 +44,15 @@ SBC(ip-group-1)# activate
 
 > [!NOTE]
 > IP Group oluşturduğunuzda cihaz otomatik olarak bu gruptan gelen çağrıları kabul etmeye başlar (Eğer Classification kuralı doğruysa). Bu, güvenlik için ilk savunma hattıdır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

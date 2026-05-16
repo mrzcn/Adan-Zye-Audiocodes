@@ -1,4 +1,4 @@
-# Regex (Düzenli İfadeler) Kütüphanesi
+﻿# Regex (Düzenli İfadeler) Kütüphanesi
 
 AudioCodes SBC üzerinde **Number Manipulation** yaparken en çok ihtiyaç duyacağınız Regex kalıpları ve kullanım örnekleri:
 
@@ -34,3 +34,15 @@ Değiştirme kısmına `$2$1` yazarsanız numara `1234567212` halini alır.
 
 > [!TIP]
 > AudioCodes'ta Regex yazarken büyük/küçük harf duyarlılığına ve boşluk bırakmamaya dikkat edin. Test etmek için cihazın **Troubleshoot > Test Tools > Dial Plan Search** aracını kullanabilirsiniz.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

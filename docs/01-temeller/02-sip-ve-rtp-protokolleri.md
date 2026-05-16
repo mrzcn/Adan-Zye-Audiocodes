@@ -1,4 +1,4 @@
-# SIP ve RTP Protokolleri
+﻿# SIP ve RTP Protokolleri
 
 SBC (Session Border Controller) yapılandırmasına geçmeden önce, yönettiği iki ana protokole (SIP ve RTP) kısaca değinmek sorun giderme (Troubleshooting) süreçlerinde hayati önem taşır.
 
@@ -32,3 +32,15 @@ SIP paketlerinin içinde taşıdığı özel bir "zarf" vardır; buna **SDP (Ses
 SDP, tarafların birbirine "*Benim IP adresim X, RTP ses paketlerini benim UDP Y portuma göndermelisin, ayrıca desteklediğim Ses Codec'leri şunlar (G.711, G.729 vs.)*" diyerek anlaştıkları bölümdür.
 
 AudioCodes cihazı, B2BUA olarak çalıştığı için SDP mesajındaki bu lokal IP ve portları siler, yerine kendi IP ve RTP port aralığını yazar. Bu işleme **Media Anchoring (Medya Demirleme)** denir ve sesin her zaman SBC üzerinden geçmesini garanti altına alır.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

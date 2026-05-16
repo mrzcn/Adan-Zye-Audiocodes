@@ -1,4 +1,4 @@
-# Hardening ve DoS Koruması
+﻿# Hardening ve DoS Koruması
 
 SBC'nin güvenliğini en üst seviyeye çıkarmak için yapılması gereken "sıkılaştırma" (Hardening) işlemleri ve saldırı önleme teknikleri.
 
@@ -38,3 +38,15 @@ AudioCodes SBC, saniyede gelen paket sayısını izleyerek saldırıları engell
 
 > [!WARNING]
 > DoS ayarlarını çok agresif yapmak (Örn: Saniyede 5 paket sınırı), yoğun trafik anında gerçek kullanıcıların da engellenmesine neden olabilir. Bu değerleri projenin çağrı yoğunluğuna göre belirleyin.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

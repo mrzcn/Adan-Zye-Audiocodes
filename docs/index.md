@@ -1,4 +1,4 @@
-# AudioCodes SBC Akademi: Yeni Mezunlar İçin Eğitim ve Başvuru Rehberi
+﻿# AudioCodes SBC Akademi: Yeni Mezunlar İçin Eğitim ve Başvuru Rehberi
 
 Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler için bir "SBC El Kitabı" olarak tasarlanmıştır. AudioCodes ekosistemini, ürün ailesini ve teknik yapılandırmaları sıfırdan öğrenmek için aşağıdaki sırayı takip edebilirsiniz.
 
@@ -56,3 +56,15 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 
 > [!IMPORTANT]
 > Bu dökümantasyon, **AudioCodes v7.20** sürümü baz alınarak hazırlanmıştır. Modern ses mühendisliğinde uzmanlaşmak için konuları sırasıyla takip etmeniz önerilir.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

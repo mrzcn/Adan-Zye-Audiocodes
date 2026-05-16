@@ -1,4 +1,4 @@
-# IP Profiles
+﻿# IP Profiles
 
 IP Profile, bir IP Group'un sahip olması gereken davranışları (Codec kısıtlamaları, SIP başlık manipülasyonları, şeffaflık ayarları vb.) belirlediğiniz kural setidir.
 
@@ -34,3 +34,15 @@ IP Profile ayarları sayesinde iç ağdaki sunucuların IP adresleri giden paket
 
 > [!NOTE]
 > IP Profile'da yaptığınız bir değişiklik, o profile bağlı olan **tüm IP Group'ları** anında etkiler.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

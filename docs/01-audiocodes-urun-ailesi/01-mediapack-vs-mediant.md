@@ -1,4 +1,4 @@
-# MediaPack vs. Mediant: Hangisi, Ne Zaman?
+﻿# MediaPack vs. Mediant: Hangisi, Ne Zaman?
 
 AudioCodes dünyasına yeni giren birinin en çok karıştırdığı iki ürün ailesi **MediaPack (MP)** ve **Mediant**'tır. Bu ikisi arasındaki farkı anlamak, doğru projede doğru cihazı seçmek için kritiktir.
 
@@ -38,3 +38,15 @@ Mediant ailesi çok daha güçlüdür. Hem analog/dijital dönüşüm yapabilir 
 
 > [!TIP]
 > Bir projede "SBC" kelimesi geçiyorsa, MediaPack serisini seçeneklerden eleyebilirsiniz. SBC yetenekleri sadece Mediant ailesinde bulunur.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

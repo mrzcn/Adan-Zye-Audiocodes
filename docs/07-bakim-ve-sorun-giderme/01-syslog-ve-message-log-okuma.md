@@ -1,4 +1,4 @@
-# Syslog ve Message Log Okuma
+﻿# Syslog ve Message Log Okuma
 
 SBC üzerinde bir sorun oluştuğunda (Çağrı düşmesi, ses gelmemesi vb.) en önemli yardımcınız cihazın ürettiği loglardır.
 
@@ -36,3 +36,15 @@ SBC üzerinde sıkça karşılaşacağınız SIP hata kodları:
 
 > [!IMPORTANT]
 > Log alırken filtreleme (Filter) özelliğini kullanarak sadece belirli bir IP'den veya numaradan gelen çağrıları takip edebilirsiniz. Bu, yoğun trafikli cihazlarda karmaşayı önler.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>

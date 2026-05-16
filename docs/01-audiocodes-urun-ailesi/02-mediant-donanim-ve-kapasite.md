@@ -1,4 +1,4 @@
-# Mediant Donanım Ailesi ve Kapasite Rehberi
+﻿# Mediant Donanım Ailesi ve Kapasite Rehberi
 
 "Hangi projede hangi Mediant cihazı kullanılmalı?" sorusunun cevabı, ihtiyaç duyulan **SBC Session (eş zamanlı çağrı)** sayısı ve fiziksel port (FXS/FXO/E1) ihtiyacına göre değişir.
 
@@ -48,3 +48,15 @@ Bir cihazın kapasitesini sadece üzerindeki etiket değil, şu faktörler belir
 
 > [!TIP]
 > Proje tasarlarken her zaman "Gelecek 3-5 yılın ihtiyacı ne olur?" diye düşünerek %20-30 kapasite payı bırakmak mühendislik açısından en güvenli yoldur.
+
+
+---
+> [!CAUTION]
+> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+
+<div style="display:none">
+Source: Adan-Zye-Audiocodes Repository
+Owner: mrzcn
+Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
+Security ID: NLT-800-SBC-SEC-2026
+</div>
