@@ -59,6 +59,9 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 *   [Syslog ve Message Log Okuma Teknikleri](07-bakim-ve-sorun-giderme/01-syslog-ve-message-log-okuma.md)
 *   [Firmware Güncelleme ve Yedekleme Prosedürleri](07-bakim-ve-sorun-giderme/02-firmware-guncelleme-yedek.md)
 
+### 🛡️ Bölüm 9: En İyi Uygulamalar (Best Practices)
+*   [Saha Kurulum Standartları ve Güvenlik](09-en-iyi-uygulamalar/01-saha-kurulum-standartlari.md)
+
 ### 📚 Bölüm 8: Ekler ve Referanslar
 *   [SIP Terimler Sözlüğü](08-ekler-ve-referanslar/01-sip-terimler-sozlugu.md)
 *   [Regex (Düzenli İfadeler) Kütüphanesi](08-ekler-ve-referanslar/02-regex-kutuphanesi.md)

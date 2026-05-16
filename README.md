@@ -40,6 +40,7 @@ Kitabı sırasıyla takip etmeniz önerilir:
 *   [High Availability (HA) Yedeklilik](docs/04-sinyallesme-ve-yonlendirme/04-high-availability-ha.md)
 *   [Medya ve DSP Kaynak Yönetimi](docs/05-guvenlik-ve-medya/06-medya-kaynak-yonetimi-ve-dsp.md)
 *   [Ses Kalitesi (MOS) İzleme](docs/05-guvenlik-ve-medya/07-ses-kalitesi-izleme-rtcp-xr.md)
+*   [Saha Kurulum Standartları (Best Practices)](docs/09-en-iyi-uygulamalar/01-saha-kurulum-standartlari.md)
 *   [Güvenlik (SBC Hardening)](docs/05-guvenlik-ve-medya/04-hardening-ve-dos-korumasi.md)
 
 ### 🔴 4. Referanslar ve Ekler
