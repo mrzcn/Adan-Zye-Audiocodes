@@ -1,4 +1,13 @@
-﻿# Neden AudioCodes?
+﻿<!-- 
+  _   _       _ _             _    ____  
+ | \ | | ___ | | |_ ___      / \  / ___| 
+ |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
+ | |\  | (_) | | || (_) |  / ___ \ ___) |
+ |_| \_|\___/|_|\__\___/  /_/   \_\____/ 
+ AudioCodes Partner Training - mrzcn 2026
+-->
+
+# Neden AudioCodes?
 
 Dünya genelinde onlarca SBC üreticisi varken, neden **Nolto** gibi öncü teknoloji şirketleri ve binlerce kurumsal müşteri **AudioCodes**'u tercih ediyor? İşte yeni mezun bir mühendis için AudioCodes'u rakiplerinden ayıran temel özellikler.
 
@@ -49,3 +58,10 @@ Owner: mrzcn
 Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
 Security ID: NLT-800-SBC-SEC-2026
 </div>
+
+
+---
+> [!NOTE]
+> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
+
+<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

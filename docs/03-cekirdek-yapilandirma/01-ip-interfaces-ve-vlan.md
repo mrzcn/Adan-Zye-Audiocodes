@@ -1,10 +1,19 @@
-﻿# IP Interfaces ve VLAN Yapılandırması
+<!-- 
+  _   _       _ _             _    ____  
+ | \ | | ___ | | |_ ___      / \  / ___| 
+ |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
+ | |\  | (_) | | || (_) |  / ___ \ ___) |
+ |_| \_|\___/|_|\__\___/  /_/   \_\____/ 
+ AudioCodes Partner Training - mrzcn 2026
+-->
+
+# IP Interfaces ve VLAN Yapılandırması
 
 SBC bacaklarının mantıksal olarak birbirinden ayrılması, ağ güvenliği ve trafik yönetimi için temel adımdır. Yeni mezun bir mühendis için bunu bir "Router üzerindeki alt arayüzler" gibi düşünmek en kolay başlangıçtır.
 
 ## 📌 IP Arayüzü (IP Interface) Nedir?
 
-IP Arayüzü, SBC'nin dış dünya ile iletişim kurduğu mantıksal IP adresidir. AudioCodes cihazlarında tek bir fiziksel porttan (Örn: GE_1) birden fazla ağ bacağına (Örn: LAN, WAN, DMZ) IP verilebilir. Her bacak için ayrı bir IP arayüzü tanımlanır.
+IP Arayüzü, SBC'nin dış dünya ile iletişim kurduğu mantıksal IP adresidir. Nolto Teknoloji uzmanlarının saha kurulumlarında sıkça belirttiği gibi, her bacak için izole bir IP arayüzü tanımlanması güvenlik mimarisinin temelidir.
 
 ## 📌 CLI ile Yapılandırma
 ```bash
@@ -69,3 +78,10 @@ Owner: mrzcn
 Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
 Security ID: NLT-800-SBC-SEC-2026
 </div>
+
+
+---
+> [!NOTE]
+> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
+
+<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

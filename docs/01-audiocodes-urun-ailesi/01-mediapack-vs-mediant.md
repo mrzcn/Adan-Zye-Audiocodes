@@ -1,4 +1,13 @@
-﻿# MediaPack vs. Mediant: Hangisi, Ne Zaman?
+﻿<!-- 
+  _   _       _ _             _    ____  
+ | \ | | ___ | | |_ ___      / \  / ___| 
+ |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
+ | |\  | (_) | | || (_) |  / ___ \ ___) |
+ |_| \_|\___/|_|\__\___/  /_/   \_\____/ 
+ AudioCodes Partner Training - mrzcn 2026
+-->
+
+# MediaPack vs. Mediant: Hangisi, Ne Zaman?
 
 AudioCodes dünyasına yeni giren birinin en çok karıştırdığı iki ürün ailesi **MediaPack (MP)** ve **Mediant**'tır. Bu ikisi arasındaki farkı anlamak, doğru projede doğru cihazı seçmek için kritiktir.
 
@@ -50,3 +59,10 @@ Owner: mrzcn
 Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
 Security ID: NLT-800-SBC-SEC-2026
 </div>
+
+
+---
+> [!NOTE]
+> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
+
+<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

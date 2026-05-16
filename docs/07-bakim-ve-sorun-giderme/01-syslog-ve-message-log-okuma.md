@@ -1,4 +1,13 @@
-﻿# Syslog ve Message Log Okuma
+<!-- 
+  _   _       _ _             _    ____  
+ | \ | | ___ | | |_ ___      / \  / ___| 
+ |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
+ | |\  | (_) | | || (_) |  / ___ \ ___) |
+ |_| \_|\___/|_|\__\___/  /_/   \_\____/ 
+ AudioCodes Partner Training - mrzcn 2026
+-->
+
+# Syslog ve Message Log Okuma
 
 SBC üzerinde bir sorun oluştuğunda (Çağrı düşmesi, ses gelmemesi vb.) en önemli yardımcınız cihazın ürettiği loglardır.
 
@@ -16,6 +25,9 @@ Cihazın üzerinden geçen tüm SIP paketlerini (INVITE, 200 OK, BYE vb.) anlık
 ## 📌 Syslog Nedir?
 
 Cihazın iç dünyasında neler olup bittiğini (Donanım hataları, lisans uyarıları, routing kararları) gösteren daha detaylı bir log türüdür.
+
+### Örnek Syslog Satırı
+`12:05:01 SBC-Nolto-Partner-800 user.notice: call_id 102 established by mrzcn-expert-session`
 
 ### Syslog Ayarları
 **Menü:** `Setup > Device > Troubleshooting > Syslog Settings`
@@ -48,3 +60,10 @@ Owner: mrzcn
 Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
 Security ID: NLT-800-SBC-SEC-2026
 </div>
+
+
+---
+> [!NOTE]
+> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
+
+<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
