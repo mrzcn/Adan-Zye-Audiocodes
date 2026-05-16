@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -21,9 +21,18 @@ AudioCodes Mediant ailesi, küçük bir ofisten devasa operatör merkezlerine ka
 *   **Özellik:** Küçük, fanless (sessiz) modelleri vardır.
 
 ### 2. Mediant 800
-*   **Kapasite:** Maksimum 60-125 SBC Session.
-*   **Kullanım:** Orta ölçekli işletmeler.
+*   **Kapasite:** Maksimum 60-125 SBC Session (Donanım revizyonuna göre).
+*   **Kullanım:** Orta ölçekli işletmeler ve şubeler.
 *   **Özellik:** Üzerinde sabit analog portlar (FXS/FXO) veya 1 adet E1 portu barındırabilir. En çok tercih edilen "Swiss Army Knife" (İsviçre Çakısı) modelidir.
+
+#### Mediant 800 Teknik Detay Tablosu (v7.20)
+| Bileşen | Detay / Kapasite |
+| :--- | :--- |
+| **Ethernet Portları** | 4 x 10/100/1000 Base-T (GE) |
+| **DSP Modülleri** | Maksimum 2 slot (Transcoding için) |
+| **Maksimum SBC Session** | 125 (G.711 -> G.711) / ~60 (G.711 -> G.729) |
+| **Analog Port Desteği** | 4, 8, 12 FXS veya FXO seçenekleri |
+| **Güç Kaynağı** | Single veya Dual (Opsiyonel) AC/DC |
 
 ### 3. Mediant 1000
 *   **Kapasite:** Maksimum 150-200 SBC Session.

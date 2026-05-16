@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -25,6 +25,12 @@ AudioCodes projelerinde genellikle iki tip CHAMPS desteğiyle karşılaşırsın
 2.  **24x7 4-Hour Response:**
     *   Yılın 365 günü, günün 24 saati kesintisiz teknik destek.
     *   Kritik arızalarda (Sistem tamamen kapalıysa) 4 saat içinde müdahale garantisi.
+
+## 📌 Donanım Değişim Modelleri
+
+Arıza durumunda donanımın nasıl değiştirileceği iki ana modele ayrılır:
+*   **AHR (Advanced Hardware Replacement):** AudioCodes, arızalı cihazın size ulaşmasını beklemeden yenisini adresinize gönderir. En hızlı değişim modelidir.
+*   **R&R (Return & Replace):** Arızalı cihazı önce fabrikaya göndermeniz gerekir. Cihaz ulaştıktan sonra tamir edilir veya yenisi gönderilir. (İş kritik sistemlerde önerilmez).
 
 ## 📌 CHAMPS Size Ne Sağlar?
 

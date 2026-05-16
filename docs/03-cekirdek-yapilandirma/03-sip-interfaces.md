@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -29,7 +29,12 @@ Parametreler:
 3.  **Application Type:** SBC uygulaması için `SBC` seçilmelidir.
 4.  **UDP / TCP / TLS Port:** Varsayılan genellikle `5060`'dır. Şifreli trafik için TLS seçilirse `5061` yaygındır.
 5.  **Media Realm:** Bu SIP Interface üzerinden gelen/giden çağrıların hangi medya alanını kullanacağı seçilir.
-6.  **Encapsulation:** Genellikle `None` seçilir.
+6.  **Encapsulation:** Genellikle `None` seçilir. Ancak SIP-over-SCTP gibi özel durumlar için değiştirilebilir.
+
+### İleri Düzey Güvenlik (v7.20)
+*   **TLS Context:** Eğer TLS portu kullanılıyorsa, hangi sertifika grubunun (Security > TLS Context) kullanılacağı buradan seçilir.
+*   **Encrypted Traffic Only:** Bu seçenek aktif edilirse, bu arayüz üzerinden gelen şifresiz (UDP/TCP) trafik anında reddedilir.
+*   **Classification Failure Action:** Eğer gelen bir çağrı herhangi bir IP Group ile eşleşmezse yapılacak işlem (Genellikle `Discard`).
 
 ## 📌 Kritik İpuçları
 

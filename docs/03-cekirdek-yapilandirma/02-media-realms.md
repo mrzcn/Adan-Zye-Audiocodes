@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -31,6 +31,11 @@ Yeni bir Media Realm eklerken şu parametreler girilir:
 2.  **IPv4 Interface Name:** Bu medyanın hangi IP arayüzü üzerinden akacağı seçilir. (Örn: `Inside_IF`).
 3.  **Port Range Start:** Başlangıç portu (Genellikle `6000`'den başlar).
 4.  **Number of Media Session Legs:** Bu realm üzerinden geçecek maksimum eş zamanlı ses bacağı sayısı. (Lisans kapasitesine göre belirlenir).
+
+### İleri Düzey Parametreler (v7.20)
+*   **Port Multiplexing:** `Enable` yapıldığında, SBC aynı UDP portu üzerinden farklı bacaklar için medya taşıyabilir. Bu, port tasarrufu sağlar.
+*   **Media Optimization:** Sesin en kısa yoldan gitmesi için (eğer her iki taraf da aynı networkteyse) medyanın SBC üzerinden geçmeden (Direct Media) akmasına izin verir. 
+*   **Default Media Realm:** Eğer bir IP Group için spesifik bir realm seçilmezse kullanılacak varsayılan bölümdür.
 
 ## 📌 Media Anchoring (Medya Demirleme)
 

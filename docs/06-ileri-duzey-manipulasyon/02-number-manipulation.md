@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -32,8 +32,10 @@ Parametreler:
 5.  **Remove From Left:** Soldan kaç hane silinecek (Örn: `3` hane silinirse `+90` gider).
 6.  **Prefix to Add:** Başa ne eklenecek (Örn: `0`).
 
-### 2. Dest/Source Prefix Menüleri
-Bu menüler daha basit prefix ekleme/çıkarma işlemleri için kullanılır.
+### 2. Destination/Source Phone Number Map Tables
+SBC üzerinde binlerce numara için tek tek kural yazmak yerine, bir tablo (Map) oluşturup bu tabloyu manipülasyon kuralına bağlayabilirsiniz.
+*   **Kullanım:** Örneğin tüm bölge müdürlüklerinin prefix'lerini bir tabloda toplayıp, tek bir kural ile hepsinin başına kurumsal kod ekleyebilirsiniz.
+*   **Menü:** `Setup > Signaling & Media > SBC > Manipulation > Destination Phone Number Map`
 
 ## 📌 Regex (Düzenli İfadeler) Kullanımı
 
