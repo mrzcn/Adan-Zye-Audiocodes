@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -17,36 +17,42 @@ Number Manipulation, arayan (Calling) veya aranan (Called) numaraların formatı
 *   **Gizleme:** Arayan numaranın son 4 hanesini maskelemek için kullanılabilir.
 *   **Yönlendirme:** Gelen numarayı manipüle ederek farklı bir hedefe yönlendirilmesini sağlamak için.
 
-## 📌 Yapılandırma Adımları (v7.20)
+## 📌 Sinyalleşme Akışındaki Sıralama (Order of Operations)
 
-AudioCodes'ta numara manipülasyonu genellikle iki yerde yapılır:
+Bir çağrı SBC'ye geldiğinde numara dönüşümü şu sırayla gerçekleşir:
+1.  **Inbound Manipulation:** Çağrı henüz yönlendirilmeden (Routing) önce yapılır. Aranan numarayı (Called) routing tablosuna uygun hale getirmek için kullanılır.
+2.  **IP-to-IP Routing:** SBC, manipüle edilmiş numaraya bakarak hedefi belirler.
+3.  **Outbound Manipulation:** Çağrı hedefe gönderilmeden hemen önce yapılır. Hedef sistemin (Operatör veya Santral) beklediği formata dönüştürmek için kullanılır.
 
-### 1. Inbound/Outbound IP-to-IP Manipulation
-**Menü:** `Setup > Signaling & Media > SBC > Manipulation > Outbound Manipulation` (Veya Inbound)
+## 📌 Map Tables (Toplu Dönüşüm) Kullanımı
 
-Parametreler:
-1.  **Name:** İsim.
-2.  **Source IP Group:** Hangi gruptan gelen çağrılar için geçerli.
-3.  **Destination IP Group:** Hangi gruba giden çağrılar için geçerli.
-4.  **Destination Username Prefix:** Hangi numara ile başlarsa (Örn: `+90`).
-5.  **Remove From Left:** Soldan kaç hane silinecek (Örn: `3` hane silinirse `+90` gider).
-6.  **Prefix to Add:** Başa ne eklenecek (Örn: `0`).
+Eğer 100 farklı bölge kodunu tek tek kural yazarak değiştirmeye çalışırsanız hem hata payı artar hem de CPU yükü yükselir.
+*   **Çözüm:** `Setup > Signaling & Media > SBC > Manipulation > Destination Phone Number Map`
+*   **Mantık:** Bir Excel tablosu gibi `Original Prefix` ve `New Prefix` eşleşmeleri tanımlanır.
+*   **Avantaj:** Tek bir Outbound Manipulation kuralı, bu tabloyu referans alarak binlerce numara dönüşümünü saniyeler içinde yapar.
 
-### 2. Destination/Source Phone Number Map Tables
-SBC üzerinde binlerce numara için tek tek kural yazmak yerine, bir tablo (Map) oluşturup bu tabloyu manipülasyon kuralına bağlayabilirsiniz.
-*   **Kullanım:** Örneğin tüm bölge müdürlüklerinin prefix'lerini bir tabloda toplayıp, tek bir kural ile hepsinin başına kurumsal kod ekleyebilirsiniz.
-*   **Menü:** `Setup > Signaling & Media > SBC > Manipulation > Destination Phone Number Map`
+## 📌 Calling Name (Arayan İsim) Manipülasyonu
 
-## 📌 Regex (Düzenli İfadeler) Kullanımı
+Sadece numaraları değil, telefon ekranında görünen ismi de değiştirebilirsiniz.
+*   **Action:** `Setup > Signaling & Media > SBC > Manipulation > Outbound Manipulation` menüsünde `Calling Name` alanını kullanın.
+*   **Senaryo:** Çağrı merkezinden gelen tüm aramaların ekranda "Müşteri Hizmetleri" olarak görünmesini sağlayabilirsiniz.
 
-AudioCodes, numara manipülasyonunda gelişmiş Regex kurallarını destekler. Örneğin:
-*   `^(.*)$` -> `0$1` (Tüm numaraların başına 0 ekle).
+## 📌 İleri Düzey Senaryo: CLIP Gizleme (CLIR)
+
+Bazı durumlarda arayan numaranın karşı tarafa gitmesini engellemek isteyebilirsiniz.
+*   **Yöntem:** `Calling Presentation` parametresini `Restricted` yaparak numaranın operatör tarafına gizli gitmesini sağlayabilirsiniz.
+*   **Regex Örneği:** `^.*$` -> `Restricted` (Tüm arayanları gizle).
+
+## 📌 Dial Plan Tag Entegrasyonu
+
+Manipülasyon kurallarını sadece IP Group bazlı değil, **Dial Plan Tag**'lerine göre de tetikleyebilirsiniz.
+*   **Senaryo:** Dial Plan'da "Uluslararası" olarak etiketlenen çağrılara farklı, "Şehir İçi" olarak etiketlenenlere farklı numara dönüşümü uygulayabilirsiniz.
+
+> [!IMPORTANT]
+> **Simetri:** Unutmayın, giden çağrıda yaptığınız `+90` -> `0` dönüşümünü, gelen çağrıda (Inbound) tersine çevirmelisiniz ki içerdeki sistemler numarayı tanıyabilsin.
 
 > [!TIP]
-> Numara manipülasyonunun çalışıp çalışmadığını test etmek için **Troubleshoot > Test Tools > Dial Plan Search** aracını kullanabilirsiniz. Girdiğiniz bir numaranın kurallardan geçtikten sonra neye dönüştüğünü size simüle eder.
-
-> [!NOTE]
-> IP-to-IP Routing kurallarından **önce** mi yoksa **sonra** mı manipülasyon yapılacağı önemlidir. Genellikle Inbound manipülasyon routing'den önce, Outbound manipülasyon ise routing'den sonra uygulanır.
+> **Dial Plan Search:** Karmaşık manipülasyon setlerinde hangi kuralın önce çalıştığını görmek için `Dial Plan Search` aracında "Call Details" kısmını inceleyin. Orada "Manipulation Applied" başlığı altında her iki bacakta yapılan değişiklikler listelenir.
 
 
 ---

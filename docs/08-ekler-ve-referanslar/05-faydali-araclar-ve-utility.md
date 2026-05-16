@@ -1,45 +1,46 @@
-﻿# Faydalı Araçlar ve Yardımcı Yazılımlar (Utilities)
+# Faydalı Araçlar ve Yardımcı Yazılımlar (Utilities)
 
 AudioCodes projelerinde kurulum, analiz ve sorun giderme süreçlerini hızlandıran, AudioCodes Library üzerinden indirilebilen temel araçlar.
 
-## 📌 Analiz ve İzleme Araçları
+## 📌 Analiz ve İzleme Araçları (Deep Dive)
 
-### 1. Syslog Viewer
-SBC'den gelen Syslog paketlerini gerçek zamanlı olarak yakalayan ve görselleştiren araçtır.
-*   **Neden Kullanılır?** Hataları farklı renklerde (Kırmızı: Error, Sarı: Warning) göstererek binlerce satır arasından sorunu saniyeler içinde bulmanızı sağlar.
-*   **Kritik Özellik:** "Filter" özelliği ile sadece belirli bir çağrı ID'sine veya IP adresine odaklanabilirsiniz.
+### 1. Syslog Viewer: Profesyonel İpuçları
+Sadece log akışını izlemek yetmez, Syslog Viewer'ın şu özelliklerini mutlaka kullanın:
+*   **Highlighting:** `Settings > Color Configuration` altından `Invite`, `Bye`, `200 OK` gibi anahtar kelimelere farklı renkler atayın. Bu, çağrı akışını gözle takip etmenizi sağlar.
+*   **Log to File:** Cihazda bazen anlık log akışı çok hızlıdır. `File > Log to File` seçeneğiyle logları diske kaydedip sonra sakin bir kafayla inceleyebilirsiniz.
+*   **Filtreleme:** `(UserPart == '532...')` gibi filtreler kullanarak sadece ilgili abonenin paketlerini süzün.
 
-### 2. Wireshark Plugins
-SBC'den alınan trafik dökümlerini (Packet Capture) Wireshark üzerinde daha detaylı görebilmek için kullanılan eklentilerdir.
-*   **Görevi:** AudioCodes'un tescilli protokollerini ve özel SIP başlıklarını Wireshark'ın anlamasını sağlar.
+### 2. Wireshark Plugins: Kurulum
+AudioCodes trafik dökümlerini okumak için Wireshark'a eklenti eklemek kritiktir:
+1.  AudioCodes'tan `.lua` eklenti dosyasını indirin.
+2.  Wireshark içinde `About Wireshark > Folders > Personal Lua Plugins` klasörüne kopyalayın.
+3.  Wireshark'ı yeniden başlattığınızda AudioCodes'a özel (H.248, AC-SIP vb.) paketleri anlamlı göreceksiniz.
 
 ## 📌 Yapılandırma Araçları
 
-### 3. SBC Configuration Wizard
-Yeni başlayanlar için hayat kurtarıcı bir araçtır.
-*   **Görevi:** Teams, Avaya, Cisco gibi popüler santraller ve global operatörler için hazır şablonlar sunar. Sizin girdiğiniz IP bilgilerine göre çalışan bir `.ini` dosyası üretir.
-
-### 4. DConvert Utility
-SBC'ye özel dosya formatlarını (Binary) yönetmek için kullanılır.
-*   **Call Progress Tones (CPT):** Türkiye'ye özel çevir sesi, meşgul sesi gibi frekansların olduğu `usa_tones.dat` dosyasını düzenlemek ve cihaza yüklemek için kullanılır.
-*   **Voice Prompts:** Cihazın çaldığı sesli anonsları (Örn: "Lütfen bekleyiniz") dönüştürmek için kullanılır.
+### 4. DConvert: CPT Dosyası Düzenleme Adımları
+Türkiye standartlarında ses tonları (Örn: Çevir sesi 425Hz) için `usa_tones.dat` dosyasını `turkey_tones.dat` yapmak için:
+1.  `DConvert.exe`'yi açın.
+2.  Mevcut `.dat` dosyasını `Load` edin.
+3.  `Call Progress Tones` sekmesinden frekansları Türkiye standartlarına göre (Genellikle 425Hz sürekli) güncelleyin.
+4.  `Convert` butonuyla yeni ikili (binary) dosyayı üretin ve SBC'ye `Setup > Device > Software Update > Loadable File` menüsünden yükleyin.
 
 ## 📌 Bakım ve Kurtarma Araçları
 
-### 5. BootP Utility
-Cihaza ağ üzerinden ilk erişimi sağlamak için kullanılır.
-*   **Senaryo:** Cihazın IP adresi bilinmiyorsa veya yazılımı (Firmware) çökmüşse, BootP üzerinden cihaza geçici bir IP atanır ve yeni yazılım yüklenerek cihaz kurtarılır.
+### 5. BootP: Cihaz Kurtarma (Disaster Recovery)
+Eğer SBC'ye hiçbir şekilde erişilemiyorsa (Firmware çökmesi):
+1.  PC'nize statik bir IP verin (Örn: `192.168.0.10`).
+2.  BootP yazılımını açın ve SBC'nin MAC adresini tanımlayın.
+3.  Cihaza bir IP adresi (`192.168.0.1`) ve yüklenecek `.cmp` dosyasının yolunu gösterin.
+4.  SBC'yi yeniden başlatın. SBC açılırken BootP'den IP alır ve firmware dosyasını otomatik olarak çekip kendini onarır.
 
-### 6. License Key Manager (LKM)
-Cihazın seri numarasını girerek sahip olduğunuz lisans anahtarlarını indirebileceğiniz portal ve yardımcı araçtır.
+### 6. INI Editor
+Konfigürasyon dosyalarını (`.ini`) Not defteri yerine INI Editor ile açmak şu avantajları sağlar:
+*   **Parametre Doğrulama:** Yanlış yazılan bir parametreyi kırmızı ile işaretler.
+*   **Hiyerarşik Görünüm:** Ayarları kategorilere (Network, Signaling vb.) göre gruplar.
 
-### 7. AudioCodes Coverage Tool
-Cihazın **CHAMPS** destek süresinin devam edip etmediğini, garantisinin durumunu seri numarasından sorgulamanıza yarayan web tabanlı araçtır.
-
----
-
-> [!TIP]
-> Bu araçların çoğu **AudioCodes Services Portal** üyeliği gerektirir. Bir AudioCodes mühendisi olarak ilk yapmanız gereken bu portala kayıt olup en güncel utility versiyonlarını bilgisayarınızda hazır bulundurmaktır.
+> [!IMPORTANT]
+> **Versiyon Uyumu:** Kullandığınız araçların versiyonu ile cihazın firmware versiyonu (Örn: v7.20) mutlaka uyumlu olmalıdır. Eski bir Syslog Viewer yeni bir firmware'deki paketleri doğru yorumlayamayabilir.
 
 ---
 <p align="center">

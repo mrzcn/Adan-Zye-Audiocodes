@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -9,40 +9,47 @@
 
 # Regex (Düzenli İfadeler) Kütüphanesi
 
-AudioCodes SBC üzerinde **Number Manipulation** yaparken en çok ihtiyaç duyacağınız Regex kalıpları ve kullanım örnekleri:
+## 📌 Türkiye Numaralandırma Planı İçin Özel Regexler
 
-## 📌 Temel Karakterler
-*   `^` : Satır başlangıcı.
-*   `$` : Satır sonu.
-*   `.` : Herhangi bir karakter.
-*   `*` : 0 veya daha fazla tekrar.
-*   `+` : 1 veya daha fazla tekrar.
-*   `()` : Gruplama (Capture group).
-*   `[0-9]` : Rakam aralığı.
+Türkiye'deki operatör (TT, Turkcell, Vodafone vb.) ve santral (Avaya, Cisco, Teams) entegrasyonlarında en çok kullanılan kalıplar:
 
-## 📌 Sık Kullanılan Kalıplar
+| Senaryo | Regex Kalıbı | Replacement | Örnek Girdi | Sonuç |
+| :--- | :--- | :--- | :--- | :--- |
+| **0'sız Numarayı +90 Yapma** | `^([2-5][0-9]{9})$` | `+90$1` | `5321234567` | `+905321234567` |
+| **0 ile Başlayanı +90 Yapma** | `^0([2-5][0-9]{9})$` | `+90$1` | `02123334455` | `+902123334455` |
+| **+90'lı Numaradan +90 Silme** | `^\+90([0-9]+)$` | `$1` | `+90532...` | `532...` |
+| **Dahili No Yakalama (4 hane)** | `^([0-9]{4})$` | `$1` | `1001` | `1001` |
+| **Bilinmeyen No Maskeleme** | `^anonymous$` | `0000` | `anonymous` | `0000` |
 
-| Senaryo | Regex Kalıbı | Değiştirme (Replace) | Açıklama |
-| :--- | :--- | :--- | :--- |
-| **Başa 0 Ekleme** | `^(.*)$` | `0$1` | Gelen tüm numaraların başına '0' ekler. |
-| **+90 Silme** | `^\+90(.*)$` | `$1` | Numara başında +90 varsa siler, kalanı bırakır. |
-| **+90'ı 0'a Çevirme** | `^\+90(.*)$` | `0$1` | +90 ile başlayan numarayı 0 ile başlayan formata sokar. |
-| **Hane Silme** | `^0212(.*)$` | `$1` | Alan kodunu (0212) silerek sadece lokal numarayı bırakır. |
-| **Numara Maskeleme** | `^([0-9]{7})([0-9]{4})$` | `$1XXXX` | Numaranın son 4 hanesini 'X' ile gizler. |
-| **Sadece 10 Hane İzni** | `^[0-9]{10}$` | - | Sadece tam 10 haneli numaraların geçmesine izin verir. |
-| **Özel Prefix Ekleme** | `^([5][0-9]{9})$` | `90$1` | 5 ile başlayan 10 haneli numaraların başına 90 ekler. |
+## 📌 SIP URI ve Host Manipülasyonu
 
-## 📌 Gruplama Mantığı ($1, $2)
+Message Manipulation katmanında sadece numaraları değil, domain ve port bilgilerini de Regex ile yönetebilirsiniz.
 
-Regex içinde parantez `()` kullandığınızda, AudioCodes bu grupları hafızaya alır:
-*   `^([0-9]{3})([0-9]{7})$`
-    *   `$1` : İlk 3 hane (Örn: 212)
-    *   `$2` : Sonraki 7 hane (Örn: 1234567)
+### 1. Host Bilgisini Değiştirme
+Gelen paketteki IP adresini veya domaini sabit bir değerle değiştirmek için:
+*   **Target:** `Header.To.URL.Host`
+*   **Regex:** `^(.*)$`
+*   **Value:** `'nolto.com.tr'`
 
-Değiştirme kısmına `$2$1` yazarsanız numara `1234567212` halini alır.
+### 2. User-Part ve Parameters Ayıklama
+SIP URI içindeki `user=phone` gibi parametreleri temizlemek veya eklemek için:
+*   **Regex:** `^sip:(.*);.*$`
+*   **Value:** `'sip:' + $1` (Noktalı virgülden sonrasını atar).
+
+## 📌 İleri Düzey Gruplama ve Karakter Sınıfları
+
+*   **Opsiyonel Karakterler (`?`):** `^0?([0-9]{10})$` -> Baştaki '0' olsa da olmasa da sonraki 10 haneyi yakalar.
+*   **Negatif Eşleşme:** `^(?!+90).*$` -> +90 ile **başlamayan** tüm numaraları yakalar.
+*   **Veya (`|`) Kullanımı:** `^(0212|0216)[0-9]{7}$` -> Sadece İstanbul Avrupa veya Anadolu yakası numaralarını yakalar.
+
+## 📌 Regex Performans İpucu
+
+SBC üzerinde binlerce kural olduğunda Regex işlemcisi CPU tüketebilir.
+*   **Öneri:** Mümkün olduğunca spesifik olun. `.*` kullanmak yerine `[0-9]+` kullanmak, SBC'nin paketi daha hızlı işlemesini sağlar.
+*   **Wildcard:** Sadece numara başında/sonunda değişiklik yapacaksanız `Prefix` ve `Suffix` alanlarını kullanın, ağır Regex işlemlerini sadece karmaşık dönüşümler için saklayın.
 
 > [!TIP]
-> AudioCodes'ta Regex yazarken büyük/küçük harf duyarlılığına ve boşluk bırakmamaya dikkat edin. Test etmek için cihazın **Troubleshoot > Test Tools > Dial Plan Search** aracını kullanabilirsiniz.
+> **Regex Test Aracı:** Regex kalıplarınızı cihaz üzerinde denemeden önce [regex101.com](https://regex101.com) gibi araçlarda (PCRE modunda) test edebilirsiniz. AudioCodes PCRE (Perl Compatible Regular Expressions) kütüphanesini baz alır.
 
 
 ---
