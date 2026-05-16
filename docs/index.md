@@ -47,6 +47,9 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 *   [SBC Güvenliği ve Sertifika Yönetimi](05-guvenlik-ve-medya/03-guvenlik-tls-ve-sertifika.md)
 *   [Hardening ve DoS Koruması](05-guvenlik-ve-medya/04-hardening-ve-dos-korumasi.md)
 *   [ACL ve Firewall Kuralları](05-guvenlik-ve-medya/05-acl-ve-firewall-kurallari.md)
+*   [Medya Kaynak Yönetimi ve DSP](05-guvenlik-ve-medya/06-medya-kaynak-yonetimi-ve-dsp.md)
+*   [Ses Kalitesi İzleme ve RTCP-XR](05-guvenlik-ve-medya/07-ses-kalitesi-izleme-rtcp-xr.md)
+*   [NAT Traversal ve Media Anchoring](05-guvenlik-ve-medya/08-nat-traversal-ve-media-anchoring.md)
 
 ### 🔀 Bölüm 6: İleri Düzey Manipülasyon
 *   [Message Manipulation (SIP Header Ezme)](06-ileri-duzey-manipulasyon/01-message-manipulation.md)
