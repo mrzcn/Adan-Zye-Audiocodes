@@ -19,47 +19,63 @@ Message Manipulation, mrzcn-expert dökümantasyon serisinin önceki bölümleri
 
 **Menü:** `Setup > Signaling & Media > Message Manipulation > Message Manipulations`
 
-Bir manipülasyon kuralı şu bileşenlerden oluşur:
+v7.20 kılavuzundaki kritik bileşenler:
 
-1.  **Manipulation Set ID:** Kuralları gruplamak için kullanılır (Örn: 1, 2, 3...). Bu ID daha sonra IP Group'a bağlanır.
-2.  **Message Type:** Hangi SIP mesajına müdahale edileceği (Örn: `Invite.Request`, `Any.Response`).
-3.  **Condition:** (Opsiyonel) Kuralın hangi durumlarda çalışacağı (Örn: `Header.From.URL.User == '100'`).
-4.  **Action Subject:** Hangi başlığın hedef alındığı (Örn: `Header.To.URL.Host`).
-5.  **Action Type:** `Modify`, `Add`, `Remove` veya `Copy`.
-6.  **Action Value:** Yeni değer (Örn: `'10.10.1.20'`).
+1.  **Manipulation Set ID:** Kuralları gruplamak için kullanılır. Bu ID daha sonra `IP Group` ayarları altındaki **Inbound/Outbound Message Manipulation Set** alanına bağlanır.
+2.  **Message Type:** Müdahale edilecek mesaj tipi (Örn: `Invite.Request`, `Any.Response`, `18x.Response`).
+3.  **Condition:** (Opsiyonel) Kuralın tetiklenme şartı. (Örn: `Header.User-Agent Contains 'Cisco'`).
+4.  **Action Subject:** Hedef alan (Örn: `Header.PAI.URL.User`, `Body.SDP.Media.IP`).
+5.  **Action Type:** `Modify`, `Add`, `Remove`, `Copy`.
 
-## 📌 Örnek: From Başlığındaki Host Kısmını Değiştirme
+## 📌 Regex ve Değişken (Variables) Kullanımı
 
-Eğer giden çağrılarda From başlığına sabit bir IP yazmak isterseniz:
-*   **Action Subject:** `Header.From.URL.Host`
+AudioCodes, başlıklar içindeki verileri parçalayıp yeniden birleştirmek için **Regex** gruplarını destekler.
+*   **Örnek:** `Header.From.URL.User` içindeki numaranın başına `0` eklemek.
+*   **Regex:** `^(.*)$`
+*   **Value:** `'0' + $1`
+*   **Açıklama:** `$1` değişkeni, parantez içindeki yakalanan tüm grubu temsil eder.
+
+## 📌 İleri Düzey Senaryolar
+
+### 1. P-Asserted-Identity (PAI) Ekleme
+Operatörler genellikle kimlik doğrulama için PAI başlığı bekler. Eğer santraliniz bunu göndermiyorsa:
+*   **Action Subject:** `Header.P-Asserted-Identity`
+*   **Action Type:** `Add`
+*   **Value:** `'<sip:' + Header.From.URL.User + '@' + Header.From.URL.Host + '>'`
+
+### 2. Microsoft Teams: Port Bilgisini Temizleme
+Teams bazen `To` başlığında port bilgisi (`:5060`) geldiğinde çağrıyı reddedebilir. Bunu temizlemek için:
+*   **Action Subject:** `Header.To.URL.Port`
+*   **Action Type:** `Remove`
+
+### 3. SDP Body Manipülasyonu (Ses Sorunları İçin)
+Eğer karşı taraf SDP içinde yanlış bir medya IP'si gönderiyorsa, SBC bunu paket gövdesinde de değiştirebilir:
+*   **Action Subject:** `Body.SDP.Connection.IP`
 *   **Action Type:** `Modify`
-*   **Action Value:** `'192.168.1.10'`
+*   **Value:** `'212.x.x.x'`
 
-## 📌 Kuralın Aktif Edilmesi
+## 📌 Koşullu (Conditional) Manipülasyon
 
-Oluşturduğunuz **Manipulation Set ID**'yi ilgili IP Group'un içine girerek **Inbound Message Manipulation Set** veya **Outbound Message Manipulation Set** alanına seçmelisiniz.
+Sadece belirli hata kodları geldiğinde çalışan kurallar yazabilirsiniz.
+*   **Senaryo:** Sadece `404 Not Found` cevabı geldiğinde bir başlık eklemek.
+*   **Message Type:** `404.Response`
+*   **Action:** `Add Header...`
 
-> [!IMPORTANT]
-> Message Manipulation kuralları çok tehlikeli olabilir. Yanlış bir kural tüm SIP trafiğini bozabilir ve çağrıların düşmesine neden olabilir.
+## 📌 Güvenlik: Sistem Bilgilerini Gizleme
+SBC'nin markasını ve sürümünü dış dünyaya sızdırmamak için `User-Agent` ve `Server` başlıklarını silmek en iyi uygulamadır (Hardening).
+*   **Action Subject:** `Header.User-Agent`
+*   **Action Type:** `Remove`
+
+> [!CAUTION]
+> **Sıralama Kritiktir:** Bir Set ID içindeki kurallar yukarıdan aşağıya çalışır. Bir kuralda değiştirdiğiniz başlık, bir sonraki kuralın "Condition" kısmını etkileyebilir.
 
 > [!TIP]
-> Bir kuralın çalışıp çalışmadığını anlamanın en iyi yolu **Troubleshoot > Message Log** üzerinden giden paketi incelemektir. Değişiklik anında orada görünecektir.
+> **Message Log Analizi:** Yaptığınız manipülasyonun sonucunu görmek için `Status & Diagnostics > Message Log` ekranını kullanın. "Before Manipulation" ve "After Manipulation" farkını görmek için log seviyesini `Detailed` yapmanız gerekebilir.
 
 
 ---
-> [!CAUTION]
-> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+<p align="center">
+  <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
+</p>
+<div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
 
-<div style="display:none">
-Source: Adan-Zye-Audiocodes Repository
-Owner: mrzcn
-Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
-Security ID: NLT-800-SBC-SEC-2026
-</div>
-
-
----
-> [!NOTE]
-> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
-
-<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

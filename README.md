@@ -58,4 +58,7 @@ Kendi ilerlemenizi takip etmek için [ROADMAP.md](ROADMAP.md) dosyasını kullan
 Bu içerik **mrzcn** tarafından hazırlanmıştır ve tüm hakları saklıdır. İçerik dijital filigranlar ile korunmaktadır. Detaylar için [LICENSE](LICENSE) dosyasını inceleyiniz.
 
 ---
-*Bu proje Nolto Teknoloji A.Ş.'den bağımsız bir eğitim girişimidir.*
+<p align="center">
+  <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
+</p>
+<div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

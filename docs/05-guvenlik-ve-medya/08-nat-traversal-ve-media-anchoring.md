@@ -1,4 +1,4 @@
-# NAT Traversal ve Media Anchoring
+﻿# NAT Traversal ve Media Anchoring
 
 Network Address Translation (NAT), VoIP trafiğinin en büyük düşmanlarından biridir. SBC, "Tek taraflı ses" (One-way audio) sorunlarını çözmek için gelişmiş NAT yönetim araçları sunar.
 
@@ -27,18 +27,8 @@ AudioCodes SBC, ses paketlerinin geldiği kaynağı dinamik olarak öğrenir ve 
 > Eğer "Ses sadece benden gidiyor ama karşıdan gelmiyor" diyorsanız, büyük ihtimalle SBC'nin **Media Realm** yapılandırmasında yanlış bir IP Interface seçilmiştir veya Firewall'da RTP portları (Genellikle 6000-10000 arası) kapalıdır.
 
 ---
-> [!CAUTION]
-> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+<p align="center">
+  <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
+</p>
+<div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
 
-<div style="display:none">
-Source: Adan-Zye-Audiocodes Repository
-Owner: mrzcn
-Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
-Security ID: NLT-800-SBC-SEC-2026
-</div>
-
----
-> [!NOTE]
-> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
-
-<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

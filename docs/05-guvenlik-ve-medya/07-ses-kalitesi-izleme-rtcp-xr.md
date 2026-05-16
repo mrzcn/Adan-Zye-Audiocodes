@@ -1,4 +1,4 @@
-# Ses Kalitesi İzleme ve RTCP-XR
+﻿# Ses Kalitesi İzleme ve RTCP-XR
 
 AudioCodes SBC, her bir çağrının ses kalitesini gerçek zamanlı olarak ölçebilir ve raporlayabilir. Bu, "Ses kesiliyor" veya "Ses robotik geliyor" gibi şikayetlerin teknik nedenini bulmak için kullanılır.
 
@@ -31,18 +31,8 @@ AudioCodes v7.20, ses kalitesi belirli bir eşiğin altına düştüğünde (Ör
 > Ses kalitesi sorunlarını analiz ederken her iki bacağı (Ingress ve Egress) ayrı ayrı inceleyin. Genellikle sorun internet bacağındaki (ISP) dalgalanmalardan kaynaklanır.
 
 ---
-> [!CAUTION]
-> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+<p align="center">
+  <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
+</p>
+<div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
 
-<div style="display:none">
-Source: Adan-Zye-Audiocodes Repository
-Owner: mrzcn
-Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
-Security ID: NLT-800-SBC-SEC-2026
-</div>
-
----
-> [!NOTE]
-> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
-
-<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>

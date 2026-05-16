@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -9,67 +9,59 @@
 
 # IP-to-IP Routing
 
-IP-to-IP Routing, SBC'nin trafiği bir IP Group'tan alıp diğerine nasıl yönlendireceğini belirlediğiniz trafik polisidir.
+## 📌 Sınıflandırma (Classification): İlk Adım
 
-## 📌 Routing Mantığı
-
-SBC'ye bir çağrı geldiğinde (Inbound), SBC önce bu çağrının hangi IP Group'tan geldiğini bulur (Classification). Daha sonra Routing tablosuna bakarak bu çağrıyı hangi IP Group'a göndereceğine karar verir (Outbound).
+SBC'ye bir INVITE geldiğinde, SBC'nin bu paketi kimin gönderdiğini (Hangi IP Group) anlaması gerekir. Buna **Inbound Classification** denir.
+*   **Eşleşme Kriterleri:** Kaynak IP adresi, SIP Interface, Proxy Set veya `Request-URI` gibi alanlara bakılır.
+*   **Neden Önemli?** Eğer SBC paketi sınıflandıramazsa, hangi Routing kuralını uygulayacağını bilemez ve çağrıyı `404 Not Found` veya `Discard` ile sonlandırır.
 
 ## 📌 Yapılandırma Adımları (v7.20)
 
 **Menü:** `Setup > Signaling & Media > SBC > Routing > IP-to-IP Routing`
 
-Bir kural eklerken şu alanlar doldurulur:
+Yeni bir kural eklerken v7.20 kılavuzundaki kritik alanlar:
 
-1.  **Name:** Kuralın ismi (Örn: `Route_Genesys_to_GW`).
-2.  **Source IP Group:** Çağrının geldiği grup (Örn: `IPG_Genesys`).
-3.  **Destination Type:** `IP Group` seçilir.
-4.  **Destination IP Group:** Çağrının gönderileceği hedef grup (Örn: `IPG_VoIP_GW`).
+1.  **Name:** Kuralın ismi (Örn: `Route_Genesys_to_TT`).
+2.  **Source IP Group:** Çağrının geldiği grup.
+3.  **Destination Type:** 
+    *   **IP Group:** Doğrudan bir gruba gönderir.
+    *   **Request URI:** Paketin üzerindeki hedefe dokunmadan iletir.
+    *   **Alternative Routing Table:** Yedekli yönlendirme tablolarını kullanır.
+4.  **Match Criteria:** 
+    *   `Destination Username Prefix`: Aranan numara maskesi.
+    *   `Internal Dial Plan Index`: Karmaşık numara planları için Dial Plan kullanımı.
 
-## 📌 CLI ile Yapılandırma
-```bash
-SBC(config-sbc)# routing ip-to-ip 0
-SBC(routing-ip-to-ip-0)# route-name Route_Genesys_to_GW
-SBC(routing-ip-to-ip-0)# src-ip-group IPG_Genesys
-SBC(routing-ip-to-ip-0)# dst-type ip-group
-SBC(routing-ip-to-ip-0)# dst-ip-group IPG_VoIP_GW
-SBC(routing-ip-to-ip-0)# activate
-```
+## 📌 İleri Düzey Yönlendirme Senaryoları
 
-## 📌 Gelişmiş Filtreleme (Match Criteria)
+### 1. Alternative Routing (Yedeklilik/Failover)
+Birincil operatör veya sunucu yanıt vermediğinde (SIP 5xx hatası veya Timeout) çağrının otomatik olarak ikinci bir hedefe gönderilmesidir.
+*   **Ayar:** Routing kuralında `Destination Type` olarak `Alternative Routing Table` seçilir. Bu tabloda `Status` kolonu `Primary` ve `Alternative` olarak hedefleri belirler.
 
-Sadece IP Group bazlı değil, aşağıdaki kriterlere göre de yönlendirme yapabilirsiniz:
-*   **Destination Username:** Aranan numaraya göre (Örn: `05xx` ile başlayanları X operatörüne gönder).
-*   **Source Username:** Arayan numaraya göre.
-*   **Request URI Host:** Gelen domain bilgisine göre.
+### 2. Load Balancing (Yük Dengeleme)
+Çağrıların iki veya daha fazla hedef (Örn: İki farklı PBX) arasında dağıtılmasıdır.
+*   **Yöntem:** Aynı kriterlere sahip birden fazla routing kuralı yazılır veya `IP Group` içindeki `Proxy Set` üzerinden "Round Robin" seçilir.
 
-## 📌 Yönlendirme Sıralaması
+### 3. Forking (Eş Zamanlı Çaldırma)
+Gelen bir çağrının aynı anda birden fazla hedefe (Örn: Hem IP Telefon hem Cep Telefonu) gönderilmesidir. AudioCodes SBC, 1'e 10 oranına kadar forking destekler.
 
-Tablodaki kurallar **yukarıdan aşağıya** taranır. İlk eşleşen kural uygulanır. Bu yüzden spesifik kurallar en üstte, genel kurallar (Catch-all) en altta olmalıdır.
+## 📌 Yönlendirme Sıralaması ve Öncelik (Cost)
+
+Tablodaki kurallar **yukarıdan aşağıya** taranır. 
+*   **Golden Rule:** Her zaman spesifik kuralları (Örn: `Destination Prefix: +90212`) en üste, genel kuralları (Örn: `Destination Prefix: ANY`) en alta yazın.
+*   **Cost:** Aynı kriterli kurallarda düşük maliyetli (Cost) olan kural önceliklidir.
 
 > [!IMPORTANT]
-> İki yönlü görüşme için mutlaka iki ayrı kural yazılmalıdır:
-> 1. Genesys -> VoIP GW
-> 2. VoIP GW -> Genesys
+> **Simetri Kuralları:** İki yönlü görüşme için mutlaka iki ayrı kural yazılmalıdır:
+> 1. `Inside -> Outside`
+> 2. `Outside -> Inside` (Eğer dışarıdan çağrı bekleniyorsa).
 
 > [!TIP]
-> Eğer çağrı "404 Not Found" veya "No Route Found" hatasıyla başarısız oluyorsa, giden bacakta **Classification** kurallarını veya Routing tablosundaki kaynak/hedef eşleşmelerini kontrol edin.
+> **Dial Plan Search:** Yapılandırmanız karmaşıklaştığında, `Troubleshoot > Test Tools > Dial Plan Search` aracını kullanarak bir numaranın hangi kuraldan geçip nereye gittiğini saniyeler içinde simüle edebilirsiniz.
 
 
 ---
-> [!CAUTION]
-> **Yasal Uyarı:** Bu dökümantasyon içeriği dijital filigran ve izleme sistemleri ile korunmaktadır. İçeriğin izinsiz kopyalanması, çoğaltılması veya başka platformlarda paylaşılması durumunda yasal süreç işletilecektir.
+<p align="center">
+  <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
+</p>
+<div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
 
-<div style="display:none">
-Source: Adan-Zye-Audiocodes Repository
-Owner: mrzcn
-Partner: Nolto Teknoloji Anonim Şirketi (AudioCodes Turkey Partner)
-Security ID: NLT-800-SBC-SEC-2026
-</div>
-
-
----
-> [!NOTE]
-> **Doğrulama Bilgisi:** Bu döküman [Nolto-Internal-DB/verify/mrzcn-800-SBC](http://docs.nolto.com.tr/verify/mrzcn-800-SBC) üzerinden kayıtlıdır. İzinsiz kopyalar bu referans üzerinden takip edilmektedir.
-
-<div style="opacity: 0.01; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
