@@ -7,57 +7,117 @@
  AudioCodes Partner Training - mrzcn 2026
 -->
 
-# Number Manipulation
+# Number Manipulation ve E.164 Numara Normalizasyonu
 
-Number Manipulation, arayan (Calling) veya aranan (Called) numaraların formatını değiştirmek için kullanılır. (Örn: Numara başına `0` eklemek veya `+90`'ı silmek).
+VoIP projelerinde, çağrıların doğru bir şekilde sonlandırılabilmesi için arayan (Calling) ve aranan (Called) numaraların karşı tarafın beklediği formata dönüştürülmesi şarttır. Bu dönüştürme işlemine **Number Manipulation (Numara Manipülasyonu)** denir. 
 
-## 📌 Neden Kullanılır?
+AudioCodes SBC, E.164 uluslararası numara standartlarını iç ağ (IP-PBX) ve dış ağ (PSTN/Operatör) arasında mükemmel bir şekilde tercüme eden son derece güçlü bir Regex ve manipülasyon motoruna sahiptir.
 
-*   **Format Uyumu:** Genesys numaraları `+90` formatında gönderirken, operatör Gateway'i numaraları başında `0` olacak şekilde bekleyebilir.
-*   **Gizleme:** Arayan numaranın son 4 hanesini maskelemek için kullanılabilir.
-*   **Yönlendirme:** Gelen numarayı manipüle ederek farklı bir hedefe yönlendirilmesini sağlamak için.
+---
 
-## 📌 Sinyalleşme Akışındaki Sıralama (Order of Operations)
+## 📌 1. E.164 Standardı Neden Hayatidir?
 
-Bir çağrı SBC'ye geldiğinde numara dönüşümü şu sırayla gerçekleşir:
-1.  **Inbound Manipulation:** Çağrı henüz yönlendirilmeden (Routing) önce yapılır. Aranan numarayı (Called) routing tablosuna uygun hale getirmek için kullanılır.
-2.  **IP-to-IP Routing:** SBC, manipüle edilmiş numaraya bakarak hedefi belirler.
-3.  **Outbound Manipulation:** Çağrı hedefe gönderilmeden hemen önce yapılır. Hedef sistemin (Operatör veya Santral) beklediği formata dönüştürmek için kullanılır.
+**E.164**, uluslararası telekomünikasyonda her cihazın benzersiz bir numaraya sahip olmasını sağlayan ITU-T standart formatıdır. 
+*   **Format:** `+[Ülke Kodu][Alan Kodu][Abone Numarası]` (Örn: `+902125554433`).
+*   **SBC'nin Rolü:** Şirket içi santraller (Cisco, Avaya) genellikle numaraları kısa formatta (Örn: 902125554433 veya sadece 02125554433) gönderir. Microsoft Teams veya bazı uluslararası operatörler ise numaraları **kesinlikle E.164 standardında (`+` ile başlayan)** bekler. SBC, iki dünya arasında köprü görevi görerek numaraları normalleştirir.
 
-## 📌 Map Tables (Toplu Dönüşüm) Kullanımı
+---
 
-Eğer 100 farklı bölge kodunu tek tek kural yazarak değiştirmeye çalışırsanız hem hata payı artar hem de CPU yükü yükselir.
-*   **Çözüm:** `Setup > Signaling & Media > SBC > Manipulation > Destination Phone Number Map`
-*   **Mantık:** Bir Excel tablosu gibi `Original Prefix` ve `New Prefix` eşleşmeleri tanımlanır.
-*   **Avantaj:** Tek bir Outbound Manipulation kuralı, bu tabloyu referans alarak binlerce numara dönüşümünü saniyeler içinde yapar.
+## 📌 2. Sinyalleşme Akışındaki Sıralama (Pipeline)
 
-## 📌 Calling Name (Arayan İsim) Manipülasyonu
+SBC üzerinde numara dönüşümleri rastgele çalışmaz. Her çağrıda işletilen katı bir **İşlem Önceliği Sırası (Pipeline)** mevcuttur.
 
-Sadece numaraları değil, telefon ekranında görünen ismi de değiştirebilirsiniz.
-*   **Action:** `Setup > Signaling & Media > SBC > Manipulation > Outbound Manipulation` menüsünde `Calling Name` alanını kullanın.
-*   **Senaryo:** Çağrı merkezinden gelen tüm aramaların ekranda "Müşteri Hizmetleri" olarak görünmesini sağlayabilirsiniz.
+```
+       Gelen Çağrı (Leg A)
+              │
+              ▼
+    [ Inbound Manipulation ]   <--- Çağrı henüz yönlendirilmeden (Routing) önce çalışır.
+              │                      Aranan numarayı SBC routing tablolarına uygun hale getirir.
+              ▼
+     [ IP-to-IP Routing ]      <--- SBC, manipüle edilmiş numaraya bakarak hedefi belirler.
+              │
+              ▼
+    [ Outbound Manipulation ]  <--- Çağrı Leg B'ye gönderilmeden hemen önce çalışır.
+              │                      Hedef sistemin (Operatör/Teams) beklediği formata dönüştürür.
+              ▼
+       Giden Çağrı (Leg B)
+```
 
-## 📌 İleri Düzey Senaryo: CLIP Gizleme (CLIR)
+---
 
-Bazı durumlarda arayan numaranın karşı tarafa gitmesini engellemek isteyebilirsiniz.
-*   **Yöntem:** `Calling Presentation` parametresini `Restricted` yaparak numaranın operatör tarafına gizli gitmesini sağlayabilirsiniz.
-*   **Regex Örneği:** `^.*$` -> `Restricted` (Tüm arayanları gizle).
+## 📌 3. AudioCodes Regex (Düzenli İfadeler) Kılavuzu
 
-## 📌 Dial Plan Tag Entegrasyonu
+AudioCodes, numara eşleştirmelerinde standart Regex (Regular Expression) kurallarını kullanır. En çok kullanılan Regex karakterleri ve anlamları:
 
-Manipülasyon kurallarını sadece IP Group bazlı değil, **Dial Plan Tag**'lerine göre de tetikleyebilirsiniz.
-*   **Senaryo:** Dial Plan'da "Uluslararası" olarak etiketlenen çağrılara farklı, "Şehir İçi" olarak etiketlenenlere farklı numara dönüşümü uygulayabilirsiniz.
+| Karakter | Teknik Anlamı | Örnek Desen (Pattern) | Açıklama |
+| :--- | :--- | :--- | :--- |
+| **`^`** | Satır başını temsil eder. | `^0` | Sadece `0` ile başlayan numaraları yakalar. |
+| **`$`** | Satır sonunu temsil eder. | `^.*$` | Başı ve sonu ne olursa olsun tüm numaraları eşleştirir. |
+| **`.`** | Herhangi tek bir karakteri temsil eder. | `^05..` | 05 ile başlayan ve sonrasında 2 hane daha olan numaraları yakalar. |
+| **`*`** | Kendinden önceki karakterin 0 veya daha fazla tekrarını temsil eder. | `.*` | Herhangi bir karakter dizisini temsil eder (Joker karakter). |
+| **`( )`** | Gruplama ve Yakalama (Capture Group). | `^0(.*)$` | Başındaki 0'ı dışarıda bırakıp kalan tüm numarayı $1 grubuna alır. |
 
-> [!IMPORTANT]
-> **Simetri:** Unutmayın, giden çağrıda yaptığınız `+90` -> `0` dönüşümünü, gelen çağrıda (Inbound) tersine çevirmelisiniz ki içerdeki sistemler numarayı tanıyabilsin.
+### Sık Kullanılan Eşleşme ve Manipülasyon Desenleri:
 
-> [!TIP]
-> **Dial Plan Search:** Karmaşık manipülasyon setlerinde hangi kuralın önce çalıştığını görmek için `Dial Plan Search` aracında "Call Details" kısmını inceleyin. Orada "Manipulation Applied" başlığı altında her iki bacakta yapılan değişiklikler listelenir.
+1.  **Baştaki 0'ı Silip E.164 formatına (`+90`) Getirmek (Outbound):**
+    *   **Prefix to Match:** `^0([2-9].*)$`
+    *   **New Prefix:** `+90$1`
+    *   *(Girdi: `02125554433` -> Sonuç: `+902125554433`)*
+2.  **Baştaki `+90`'ı silip Başına `0` Eklemek (Operatör Yönü için):**
+    *   **Prefix to Match:** `^\+90(.*)$`
+    *   **New Prefix:** `0$1`
+    *   *(Girdi: `+902125554433` -> Sonuç: `02125554433`)*
+3.  **Arayan Numaranın Son 4 Hanesini Maskelemek (Güvenlik / KVKK):**
+    *   **Prefix to Match:** `^(.*)(....)$`
+    *   **New Prefix:** `$1xxxx`
+    *   *(Girdi: `05321112233` -> Sonuç: `0532111xxxx`)*
 
+---
+
+## 📌 4. Map Tables (Toplu Dönüşüm) Mimarisi
+
+Bir şirketin 50 farklı şubesi varsa ve her şube dışarı arama yaparken kendi arayan numarasını (DID) operatör formatına dönüştürmek istiyorsa, 50 satır manipülasyon kuralı yazmak CPU'ya yük bindirir.
+
+### Çözüm: Map Tables (Harita Tabloları)
+`Setup > Signaling & Media > SBC > Manipulation > Destination/Source Phone Number Map`
+
+*   **Çalışma Şekli:** SBC içerisine bir Excel şablonu gibi çalışan bir harita tablosu (Map Table) yüklenir.
+*   **Örnek Tablo Yapısı:**
+    | Original Prefix | New Prefix |
+    | :--- | :--- |
+    | `2001` | `02125550001` |
+    | `2002` | `02125550002` |
+    | `2003` | `02125550003` |
+*   **Manipülasyon Entegrasyonu:** Tek bir Outbound kuralı yazılır ve `Map Table Index` olarak bu tablo atanır. SBC, arayan numarayı bu tablodaki listede arar, eşleşen yeni numara ile otomatik olarak değiştirir.
+
+---
+
+## 📌 5. Arayan Numara Kimliği Yönetimi (CLIP / CLIR & Privacy)
+
+Dış aramalarda şirketin ana numarasının gösterilmesi (CLIP) veya numaranın tamamen gizlenmesi (CLIR) manipülasyon kuralları ile yönetilir.
+
+### Arayan Numarayı Gizleme (Anonymous Calling)
+Karşı tarafta numaranızın "Gizli Numara" (Private Number) olarak görünmesini istiyorsanız:
+*   **Menü:** `Setup > Signaling & Media > SBC > Manipulation > Outbound Manipulation`
+*   **Ayar:** İlgili kuralın altında `Calling Presentation` parametresi `Restricted` (Kısıtlı) yapılır.
+*   **SIP Karşılığı:** SBC, dışarı gönderdiği `INVITE` paketindeki `From` başlığını `sip:anonymous@anonymous.invalid` olarak değiştirir ve SIP gövdesine `Privacy: id` başlığını ekler.
+
+---
+
+## 📌 6. Sık Karşılaşılan Hatalar ve Saha Hata Avı (Troubleshooting)
+
+### 1. "Double Prefix" (Çift Sıfır veya Çift Artı) Sorunu
+*   **Belirti:** Numara dışarıya `++90212...` veya `00212...` şeklinde hatalı formatta çıkar ve operatör aramayı sonlandırır.
+*   **Nedeni:** Hem Inbound Manipulation hem de Outbound Manipulation kuralları aynı anda numaranın başına artı/sıfır eklemiştir.
+*   **Çözüm:** Syslog Viewer üzerinden her iki bacağa (Leg A ve Leg B) ait `INVITE` paketlerini inceleyin. Numaranın hangi bacakta manipüle edildiğini tespit ederek kurallardan birini pasife çekin.
+
+### 2. "Request-URI" ve "To" Header Uyuşmazlığı
+*   **Belirti:** Numara manipülasyonu çalışıyor görünmesine rağmen bazı santraller çağrıyı reddeder.
+*   **Nedeni:** Number Manipulation kuralları varsayılan olarak sadece SIP paketindeki **Request-URI** (hedef IP) alanındaki numarayı değiştirir. Ancak paket içerisindeki **`To:`** başlığı eski (manipüle edilmemiş) numarada kalmış olabilir.
+*   **Çözüm:** Outbound Manipulation kuralında `Apply to To Header` parametresini `Enable` yaparak değişikliğin `To` başlığına da yazılmasını sağlayın.
 
 ---
 <p align="center">
   <small>Ref: NLT-800-SBC-2026 | mrzcn © 2026</small>
 </p>
 <div style="opacity: 0; font-size: 1px;">m‌r‌z‌c‌n‌-‌n‌o‌l‌t‌o‌-‌a‌u‌d‌i‌o‌c‌o‌d‌e‌s‌-‌t‌r‌a‌i‌n‌i‌n‌g‌-‌2‌0‌2‌6‌</div>
-
