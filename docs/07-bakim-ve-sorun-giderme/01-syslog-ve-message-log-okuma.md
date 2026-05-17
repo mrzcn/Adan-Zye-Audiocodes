@@ -20,6 +20,10 @@ Bir SIP mesajı üç ana bölümden oluşur. Loglarda bunları ayırt edebilmek,
 
 ## 📌 Ladder Diagram (Akış Diyagramı) Analizi
 
+<p align="center">
+  <img src="../../docs/assets/syslog_viewer_screenshot.png" alt="AudioCodes Syslog Viewer & SIP Ladder Diagram" width="800"/>
+</p>
+
 AudioCodes **Syslog Viewer** veya **Wireshark** kullanarak çağrı akışını bir merdiven diyagramı gibi görebilirsiniz. Sağlıklı bir çağrı akışı şöyledir:
 1.  **INVITE:** Çağrı başlatma talebi.
 2.  **100 Trying:** "Mesajı aldım, üzerinde çalışıyorum."

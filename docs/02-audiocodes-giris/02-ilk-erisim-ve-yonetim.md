@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -29,6 +29,10 @@ AudioCodes cihazları genellikle aşağıdaki varsayılan ağ ayarlarıyla gelir
 4.  Varsayılan kullanıcı bilgileri ile giriş yapın.
 
 ## 📌 Web Arayüzü (GUI) Yapısı
+
+<p align="center">
+  <img src="../../docs/assets/audiocodes_web_gui_screenshot.png" alt="AudioCodes SBC Web GUI Dashboard" width="800"/>
+</p>
 
 AudioCodes v7.20 arayüzü üç ana bölüme ayrılmıştır:
 

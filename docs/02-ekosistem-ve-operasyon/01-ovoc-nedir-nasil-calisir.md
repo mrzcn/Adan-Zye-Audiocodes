@@ -13,6 +13,10 @@ Bir şirketin sadece 1 tane SBC'si varken onu yönetmek kolaydır. Peki ya 50 fa
 
 ## 📌 OVOC Nedir?
 
+<p align="center">
+  <img src="../../docs/assets/ovoc_dashboard_screenshot.png" alt="AudioCodes One Voice Operations Center (OVOC) Dashboard" width="800"/>
+</p>
+
 OVOC, tüm AudioCodes ekosistemini (SBC'ler, Gateway'ler, IP Telefonlar) tek bir merkezden yönetmenizi, izlemenizi ve sorun gidermenizi sağlayan bir "Şemsiye" yazılımdır.
 
 ## 📌 Temel Özellikleri ve Operasyonel Faydaları
