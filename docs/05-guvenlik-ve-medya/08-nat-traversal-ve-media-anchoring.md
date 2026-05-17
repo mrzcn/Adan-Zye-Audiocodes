@@ -29,6 +29,18 @@ Evden çalışan bir personelin IP telefonu, evdeki modemin (NAT) arkasındadır
 
 ## 📌 Media Optimization (Latching) Detayları
 
+```mermaid
+graph LR
+    A[Evdeki Telefon<br/>Lokal: 192.168.1.5] -- SIP/RTP Paketleri --> B((Evdeki Modem / NAT<br/>Public IP: 88.22.33.44))
+    B -- "Latching Süreci:<br/>SBC SDP'ye değil<br/>Gerçek IP'ye bakar" --> C[AudioCodes SBC<br/>Public IP]
+    C -- Media Anchoring --> D[Şirket İçi IP-PBX]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#f96,stroke:#333,stroke-width:2px
+    style D fill:#dfd,stroke:#333,stroke-width:2px
+```
+
 AudioCodes SBC, ses paketlerinin geldiği kaynağı dinamik olarak öğrenir ve ses akışını o adrese sabitler (Latching). 
 *   Eğer bir IP değişimi olursa (Roaming), SBC yeni paketin geldiği portu hızlıca kavrar ve sesi oraya yönlendirir.
 *   Eğer ses bir süre (Örn: 60 saniye) gelmezse, SBC güvenlik gereği portu kapatır.

@@ -18,6 +18,21 @@ Bir SBC, geleneksel bir Firewall (Güvenlik Duvarı) veya NAT (Ağ Adresi Çevir
 Standart bir SIP Proxy, paketleri sadece bir duraktan diğerine iletirken (ve sadece başlığa dokunurken), AudioCodes SBC bir **B2BUA** olarak çalışır.
 
 ### B2BUA Nasıl Çalışır?
+
+```mermaid
+sequenceDiagram
+    participant A as IP-PBX (İç Ağ)
+    participant SBC as AudioCodes SBC (B2BUA)
+    participant B as Operatör (Dış Ağ)
+    
+    A->>SBC: INVITE (Ingress Leg)
+    Note over SBC: SBC paketi sonlandırır, kuralları işler.
+    SBC->>B: Yeni INVITE (Egress Leg)
+    B-->>SBC: 200 OK
+    Note over SBC: Yanıt işlenir, iç ağa iletilir.
+    SBC-->>A: 200 OK
+```
+
 1.  **Ingress Leg (Giriş Bacağı):** A abonesinden gelen `INVITE` paketini SBC karşılar ve burada sonlandırır. SBC, A abonesine göre bir "User Agent Server" (UAS) gibi davranır.
 2.  **Egress Leg (Çıkış Bacağı):** SBC, kendi kurallarına (Routing, Manipulation) göre B abonesine yepyeni bir `INVITE` paketi oluşturup gönderir. B abonesine göre SBC bir "User Agent Client" (UAC) gibi davranır.
 

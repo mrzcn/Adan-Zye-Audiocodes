@@ -13,6 +13,10 @@ SBC'nin güvenliğini en üst seviyeye çıkarmak için yapılması gereken "sı
 
 ## 📌 20 Maddelik Hardening Kontrol Listesi
 
+<p align="center">
+  <img src="../../docs/assets/security_shield_concept.png" alt="Cybersecurity Shield Concept" width="800"/>
+</p>
+
 Bir SBC'yi yayına almadan önce mutlaka bu listeyi kontrol edin:
 
 1.  [ ] Varsayılan `Admin` şifresini değiştirin.

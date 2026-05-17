@@ -33,6 +33,28 @@ RTP, SIP aracılığıyla tanışan iki uç nokta arasında **gerçek ses (medya
 > [!WARNING]  
 > Telefonlar çalıyor, karşı taraf telefonu açıyor ancak ses gelmiyorsa (veya tek taraflı ses geliyorsa), sorun SIP ile değil, **RTP portlarının Firewall'da kapalı olması** veya NAT/SBC üzerindeki Media Realm / IP Routing ayarlarındaki bir sorundan kaynaklanmaktadır.
 
+```mermaid
+sequenceDiagram
+    participant A as Arayan Telefon
+    participant B as Aranan Telefon
+    
+    Note over A,B: 1. Sinyalleşme Fazı (SIP - TCP/UDP 5060)
+    A->>B: SIP: INVITE (SDP: Benim RTP Portum 6000)
+    B-->>A: SIP: 180 Ringing
+    B-->>A: SIP: 200 OK (SDP: Benim RTP Portum 7000)
+    A->>B: SIP: ACK
+    
+    Note over A,B: 2. Medya Fazı (RTP - UDP Dinamik Portlar)
+    rect rgb(30, 40, 60)
+    A->>B: RTP: Ses Verisi (Hedef Port 7000)
+    B->>A: RTP: Ses Verisi (Hedef Port 6000)
+    end
+    
+    Note over A,B: 3. Kapatma Fazı
+    A->>B: SIP: BYE
+    B-->>A: SIP: 200 OK
+```
+
 ---
 
 ### SIP ve RTP'nin Birlikte Çalışma Mantığı (SDP Anatomisi)

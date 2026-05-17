@@ -5,6 +5,10 @@
 ![Type](https://img.shields.io/badge/Type-Educational%20Book-orange?style=for-the-badge)
 ![Target](https://img.shields.io/badge/Target-L1_to_L3_Engineers-purple?style=for-the-badge)
 
+<p align="center">
+  <img src="docs/assets/readme_hero_sbc.png" alt="AudioCodes SBC Akademi Hero Concept" width="800"/>
+</p>
+
 Ses teknolojileri dünyasına hoş geldiniz! Bu depo, bir sistem veya ağ mühendisinin sıfırdan başlayıp **AudioCodes Mediant 800 SBC** (v7.20) uzmanı (L3 Seviyesi) olmasına yardımcı olacak şekilde tasarlanmış, yaşayan bir saha eğitim kitabıdır.
 
 ---
