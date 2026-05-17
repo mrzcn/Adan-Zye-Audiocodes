@@ -11,21 +11,55 @@
 
 AudioCodes SBC'ler "Kullandığın kadar öde" mantığıyla çalışan, yazılım tanımlı kapasiteye sahip cihazlardır. 
 
-## 📌 Lisans Tipleri
+## 📌 Kapsamlı Lisanslama Modelleri
 
-Cihazın üzerinde hangi özellikleri kullanabileceğinizi lisans anahtarı belirler. Ana lisans kalemleri şunlardır:
+AudioCodes SBC donanımları veya sanal sürümleri (Mediant VE), üzerinde çalışan yazılım lisansları ile yetenek kazanır. Lisanslama temel olarak iki ana kategoriye ayrılır:
 
-1.  **SBC Sessions:** Aynı anda kaç eş zamanlı çağrı yapılabileceği. (Örn: 20 sessions).
-2.  **Transcoding Sessions:** Kaç çağrıda codec dönüşümü yapılabileceği.
-3.  **Security (TLS/SRTP):** Şifreleme özelliğinin açık olup olmadığı.
-4.  **Advanced Features:** Teams Direct Routing, Voice Quality Monitoring gibi ek özellikler.
+### 1. Kapasite Lisansları (Capacity Licenses)
+*   **SBC Sessions:** Cihazın aynı anda aktif olarak işleyebileceği maksimum eş zamanlı çağrı sayısıdır (SIP-to-SIP Session). Lisans sınırına ulaşıldığında, yeni gelen çağrılar SBC tarafından `503 Service Unavailable` veya `480 Temporarily Unavailable` koduyla reddedilir.
+*   **Transcoding (DSP) Sessions:** İki uç nokta arasındaki ses codec uyuşmazlığını (Örn: G.711 PCMA konuşan iç santral ile G.729 konuşan operatör) aşmak için ses sinyalinin çözülüp yeniden kodlanması (Transcoding) gerekir. Bu işlem donanımsal DSP veya sanal transcoding lisansı tüketir.
+
+### 2. Özellik Lisansları (Feature Flags)
+*   **Security (TLS/SRTP):** Cihazın sinyalleşmeyi TLS (Port 5061) ile şifrelemesi ve medyayı SRTP ile güvenli hale getirmesini aktifleştirir. Bu lisans olmadan cihaz kriptolu çağrı kabul etmez.
+*   **High Availability (HA):** İki cihazın yedekli (Active-Standby) çalışabilmesini sağlar. **Kural:** HA mimarilerinde her iki cihaz da birebir aynı SBC Session ve HA lisansına sahip olmak zorundadır.
+
+---
+
+## 📌 Microsoft Teams Direct Routing Lisans Gereksinimleri
+
+Bir AudioCodes SBC'yi Microsoft Teams ortamına entegre etmek istiyorsanız, standart bir SBC lisansı yeterli değildir. Teams Direct Routing mimarisi, yapısı gereği **zorunlu olarak** şu 4 lisans bileşeninin tamamını lisans anahtarınızda (License Key) aktif olarak bulundurmalıdır:
+
+1.  **SW/TEAMS (Microsoft Teams Feature Flag):** SBC'nin Microsoft Teams FQDN'leri ile konuşabilmesini, Teams'e özel SIP header manipülasyonlarını yapabilmesini ve Teams onaylı sinyalleşme protokollerini çalıştırmasını sağlayan **zorunlu** anahtardır.
+2.  **SBC Sessions (Eş Zamanlı Çağrı):** Teams üzerinden dış dünyaya (PSTN/Operatör) çıkacak veya iç santrale bağlanacak her aktif çağrı için 1 adet SBC session lisansı yüklü olmalıdır.
+3.  **Security (TLS/SRTP):** Microsoft Teams, standart dışı güvensiz SIP (UDP/TCP 5060) ve çıplak RTP ses paketlerini **kesinlikle kabul etmez**. Teams entegrasyonu için sinyalleşmede TLS (5061) ve medyada SRTP şifrelemesi zorunludur. Dolayısıyla şifreleme/güvenlik lisansının aktif olması şarttır.
+4.  **Transcoding / DSP Sessions (Opsiyonel ama Şiddetle Önerilen):** 
+    *   Microsoft Teams, WAN bacağında ve mobil istemcilerde yüksek ses kalitesi ve bant genişliği tasarrufu sağlamak için **SILK** veya **Opus** (HD Codec) kullanır.
+    *   Ancak iç ağdaki IP-PBX veya operatör bacağı genellikle **G.711** veya **G.729** kullanır.
+    *   Bu uyuşmazlığı aşmak ve çağrının sorunsuz kurulmasını sağlamak için sesin SBC üzerinde dönüştürülmesi (Transcoding) gerekir. Cihazda yeterli donanımsal DSP chip ve transcoding lisansı olmalıdır.
+
+---
+
+## 📌 Lisans Dağıtım ve Teslimat Yöntemleri
+
+AudioCodes, mimarinize göre iki farklı lisanslama dağıtımı sunar:
+
+### 1. Node-Locked (Cihaza Bağlı Lisans)
+Geleneksel lisanslama yöntemidir. Satın alınan lisans anahtarı, cihazın fiziksel **MAC adresine** kilitlenir. 
+*   **Taşınabilirlik:** Bu lisans başka bir donanıma veya sanal cihaza aktarılamaz. Donanım arızası durumunda AudioCodes RMA (Değişim) süreci üzerinden yeni cihazın MAC adresine özel lisansın yeniden üretilmesi gerekir.
+
+### 2. Floating / Flex Licensing (Merkezi Havuz)
+Bulut (AWS, Azure) veya sanal veri merkezlerinde (Mediant VE) çalışan geniş ölçekli projeler için geliştirilmiştir.
+*   **Çalışma Mantığı:** Tüm lisanslar merkezi **OVOC (One Voice Operations Center)** üzerinde toplanır. Sahadaki veya buluttaki sanal SBC'ler açıldığında OVOC'a bağlanarak ihtiyaçları kadar lisansı (Örn: 50 session) havuzdan çeker. 
+*   **Avantajı:** Bir SBC kapatıldığında veya silindiğinde, lisanslar otomatik olarak merkezi havuza geri döner ve başka bir SBC tarafından kullanılabilir hale gelir.
+
+---
 
 ## 📌 Lisans Nasıl Yüklenir?
 
-1.  Cihazın seri numarasını (MAC) AudioCodes'a iletirsiniz.
+1.  Cihazın seri numarasını (MAC veya Product Key) `Status & Diagnostics > Device Info` altından kopyalayıp AudioCodes veya distribütörünüz Nolto'ya iletirsiniz.
 2.  Size uzun bir metin dizisi (License Key) gönderilir.
-3.  **Setup > Device > License** menüsünden bu anahtarı yapıştırıp "Load" dersiniz.
-4.  Cihazı yeniden başlatmanız (Burn & Reset) gerekebilir.
+3.  **Setup > Device > License** menüsünden bu anahtarı yapıştırıp **"Load"** dersiniz.
+4.  Yeni özellikleri aktif etmek için sağ üstten **"Burn"** butonuna basarak ayarları kalıcı hafızaya kaydedip cihazı yeniden başlatmanız (Reset) gerekir.
 
 ## 📌 Sürümler Arasındaki Major Farklar (v6.6 - v7.0 - v7.2 - v7.4)
 
