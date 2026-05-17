@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -15,18 +15,17 @@ Bir şirketin sadece 1 tane SBC'si varken onu yönetmek kolaydır. Peki ya 50 fa
 
 OVOC, tüm AudioCodes ekosistemini (SBC'ler, Gateway'ler, IP Telefonlar) tek bir merkezden yönetmenizi, izlemenizi ve sorun gidermenizi sağlayan bir "Şemsiye" yazılımdır.
 
-## 📌 Temel Özellikleri
+## 📌 Temel Özellikleri ve Operasyonel Faydaları
 
-1.  **Merkezi Yönetim (Configuration Management):**
-    *   Tüm cihazlara aynı anda firmware yükleyebilir veya konfigürasyon dosyası (INI) gönderebilirsiniz.
-    *   Sıfır kutudan çıkan bir cihazı (Zero Touch Provisioning), sadece internete bağlayarak OVOC üzerinden otomatik yapılandırabilirsiniz.
-2.  **Kalite İzleme (Quality of Experience - QoE):**
-    *   Yapılan her çağrının ses kalitesini (MOS skoru, Jitter, Gecikme) anlık izler.
-    *   "Dün saat 14:00'te Ahmet Bey'in çağrısı neden cızırtılıydı?" sorusuna grafiklerle yanıt verir.
-3.  **Alarm ve Bildirimler:**
-    *   Bir Proxy Set çöktüğünde veya bir cihaz internetten düştüğünde size anında e-posta veya SNMP uyarısı gönderir.
-4.  **Cihaz Envanteri:**
-    *   Hangi cihazda hangi firmware var, lisans süresi ne zaman bitiyor gibi bilgileri tek ekranda listeler.
+1.  **Configuration Management ve Zero Touch Provisioning (ZTP):**
+    *   Yüzlerce cihaza aynı anda firmware paketi gönderebilir veya yedeklerini tek tıkla alabilirsiniz.
+    *   **ZTP:** Sahaya gönderilen kutusundan yeni çıkmış bir cihaz, internete bağlandığı an otomatik olarak OVOC'a ulaşır. Önceden hazırladığınız şablon (Template) anında cihaza itilir ve mühendis sahaya gitmeden cihaz devreye alınır.
+2.  **Topology View ve Cihaz Envanteri:**
+    *   Ağınızdaki tüm cihazları (SBC, Gateway, IP Telefon) bir topoloji haritası üzerinde görselleştirir. Hangi cihazın hangi firmware sürümünde olduğunu, lisans kapasitelerinin yüzde kaçının dolduğunu canlı renklerle (Yeşil/Kırmızı) takip edersiniz.
+3.  **Kalite İzleme (Quality of Experience - QoE):**
+    *   OVOC, uç noktalardan gelen RTCP-XR verilerini işler. "Dün saat 14:00'te Ahmet Bey'in çağrısı neden cızırtılıydı?" sorusunu analiz ederek; sorunun Jitter'dan mı, ISP kaynaklı bir paket kaybından mı yoksa DSP yetersizliğinden mi kaynaklandığını bulur.
+4.  **Alarm Yönetimi ve Northbound Entegrasyonu:**
+    *   Cihazlardan gelen SNMP Trap'leri (Örn: "HA Failover oldu", "Ethernet portu düştü") okur. Bu hataları e-posta ile IT ekibine iletir. Ayrıca OVOC, verileri üst katmandaki kurumun ana izleme sistemine (Örn: SolarWinds, Zabbix) Northbound API ile paslayabilir.
 
 ## 📌 Nasıl Çalışır?
 

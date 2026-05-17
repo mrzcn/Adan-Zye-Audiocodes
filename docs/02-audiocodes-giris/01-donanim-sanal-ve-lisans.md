@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -20,21 +20,21 @@ AudioCodes SBC çözümleri üç ana formda karşımıza çıkar:
 2.  **Sanal SBC (Mediant VE - Virtual Edition):** VMware, Hyper-V, KVM gibi sanallaştırma platformları üzerinde çalışır.
 3.  **Bulut SBC (Cloud Edition):** AWS, Azure ve Google Cloud üzerinde hazır imajlar olarak sunulur.
 
-## 📌 Mediant 800 Fiziksel Yapısı
+## 📌 Mediant 800 Fiziksel Yapısı ve Modülerlik
 
-Mediant 800 cihazı üzerinde genellikle aşağıdaki port grupları bulunur:
+Mediant 800 cihazı (1U boyutunda) genellikle aşağıdaki port gruplarına sahiptir:
+*   **Ethernet Portları (GE):** Sinyalleşme ve medya trafiği için kullanılır. İzolasyon için LAN (İç Ağ) ve WAN (Dış Ağ) ayrımı VLAN'lar ile veya fiziksel farklı kablolarla yapılır.
+*   **OAMP Portu (Front Panel):** Cihazın yönetimi (Web arayüzü, SSH, SNMP) için ayrılmış izole yönetim portudur.
+*   **Analog/Dijital Slotlar (Gateway Modu):** İhtiyaca göre FXS (analog telefon), FXO (Türk Telekom bakır hat) veya E1/T1 (PRI Dijital hat) modülleri takılarak PSTN ağlarına doğrudan çıkış sağlanabilir.
 
-*   **Ethernet Portları (GE):** Sinyalleşme ve medya trafiği için kullanılır. Genellikle LAN ve WAN ayrımı için farklı fiziksel portlar veya VLAN'lar tanımlanır.
-*   **OAMP Portu:** Cihazın yönetimi (Web arayüzü, SSH, SNMP) için ayrılmış özel porttur.
-*   **Analog/Dijital Slotlar:** İhtiyaca göre FXS (analog telefonlar), FXO (Türk Telekom analog hatlar) veya E1/T1 (PRI hatlar) modülleri takılabilir.
+## 📌 Lisanslama Mantığı ve Kapasite Sınırları
 
-## 📌 Lisanslama Mantığı (SBC Capacity)
+AudioCodes cihazlarında "Aldığın kadar öde" mantığı geçerlidir. Donanım 400 çağrıyı kaldırabilecek güçte olsa bile lisansınız kadar çağrı yapabilirsiniz.
 
-AudioCodes cihazlarında kapasite lisansla belirlenir. En kritik lisans kalemleri şunlardır:
-
-*   **SBC Sessions:** Aynı anda aktif olabilecek maksimum çağrı sayısıdır. Lisans limitine ulaşıldığında cihaz yeni çağrıları `503 Service Unavailable` hatasıyla reddeder.
-*   **Transcoding Sessions:** Ses codec dönüşümü (örneğin G.711'den G.729'a) gerektiren çağrıların sayısıdır. Her transcoding işlemi donanım kaynağı (DSP) tüketir.
-*   **Security (TLS/SRTP):** Şifreli sinyalleşme ve medya için ek lisanslar gerekebilir.
+1.  **SBC Sessions (Concurrent Calls):** Aynı anda aktif olabilecek maksimum çağrı sayısıdır. Örneğin 100 Session lisansınız varsa, 101. çağrı cihaz tarafından `503 Service Unavailable` veya `480 Temporarily Unavailable` hatasıyla nazikçe reddedilir.
+2.  **Transcoding Sessions:** Ses formatı dönüşümü (Örn: G.711 ↔ G.729) gerektiren çağrıların lisansıdır. Transcoding, cihazın içindeki DSP (Digital Signal Processor) çipini tüketir. DSP kapasitesi donanımsal olduğu için sadece lisans almak yetmez, cihazda uygun donanım modülünün olması gerekir.
+3.  **Security (TLS/SRTP) Lisansı:** Bankalar veya çağrı merkezleri gibi sesi şifreli iletmek isteyen kurumlar için SIPS ve SRTP aktivasyon lisansıdır.
+4.  **Floating License (Yüzer Lisans):** Birden fazla AudioCodes SBC'niz varsa, OVOC üzerinden tek bir lisans havuzu oluşturup, cihazların ihtiyaç duydukça bu havuzdan lisans çekip bırakmalarını sağlayan esnek mimaridir.
 
 > [!TIP]
 > Cihazınızın mevcut lisans durumunu görmek için Web arayüzünde **Setup > Device > License** menüsünü kullanabilirsiniz. "Maximum Number of SBC Sessions" satırı cihazınızın anlık kapasitesini gösterir.

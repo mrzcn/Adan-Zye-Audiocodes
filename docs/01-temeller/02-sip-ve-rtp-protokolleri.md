@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -35,12 +35,18 @@ RTP, SIP aracılığıyla tanışan iki uç nokta arasında **gerçek ses (medya
 
 ---
 
-### SIP ve RTP'nin Birlikte Çalışma Mantığı (SDP)
+### SIP ve RTP'nin Birlikte Çalışma Mantığı (SDP Anatomisi)
 
-SIP paketlerinin içinde taşıdığı özel bir "zarf" vardır; buna **SDP (Session Description Protocol)** denir. 
-SDP, tarafların birbirine "*Benim IP adresim X, RTP ses paketlerini benim UDP Y portuma göndermelisin, ayrıca desteklediğim Ses Codec'leri şunlar (G.711, G.729 vs.)*" diyerek anlaştıkları bölümdür.
+SIP paketlerinin gövdesinde taşınan özel "zarf"a **SDP (Session Description Protocol)** denir. SIP paketleri iki kişinin telefonla birbirini aramasıysa, SDP o kişilerin "Hangi dilde konuşacağız ve nerede buluşacağız?" pazarlığıdır.
 
-AudioCodes cihazı, B2BUA olarak çalıştığı için SDP mesajındaki bu lokal IP ve portları siler, yerine kendi IP ve RTP port aralığını yazar. Bu işleme **Media Anchoring (Medya Demirleme)** denir ve sesin her zaman SBC üzerinden geçmesini garanti altına alır.
+Bir SDP paketinin en kritik iki satırı şunlardır:
+*   **`c=` (Connection Data):** Medya trafiğinin (RTP) gönderileceği hedef IP adresidir (Örn: `c=IN IP4 192.168.1.50`).
+*   **`m=` (Media Announcement):** Hangi portun kullanılacağı ve hangi codec'lerin desteklendiğini belirtir (Örn: `m=audio 6000 RTP/AVP 8 18`). Burada 8 (PCMA/G.711) ve 18 (G.729) desteklenen dilleri temsil eder.
+
+**SBC'nin Rolü (Media Anchoring):** AudioCodes cihazı B2BUA olarak çalıştığı için, içeri giren SIP paketini tutar, içindeki SDP `c=` satırındaki lokal IP'yi siler ve dış dünyaya **kendi dış IP'sini** yazar. Bu işleme Media Anchoring denir ve sesin her zaman SBC üzerinden geçmesini garanti eder.
+
+### Early Media (Erken Medya) ve 183 Session Progress
+Normalde ses trafiği (RTP), karşı taraf telefonu açtığında (200 OK mesajı sonrası) akar. Ancak operatör sistemlerinde "Aradığınız kişiye ulaşılamıyor" gibi anonslar telefon açılmadan **çalarken** duyulur. Buna **Early Media** denir ve SIP `183 Session Progress` mesajıyla tetiklenir. SBC konfigürasyonlarında en çok yaşanan sorunlardan biri "Anons duyulmaması" olup, genellikle IP Profile altındaki Early Media ayarlarının uyumsuzluğundan kaynaklanır.
 
 
 ---
