@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -34,6 +34,8 @@ Bu dökümantasyon, ses teknolojileri dünyasına yeni adım atan mühendisler i
 *   [IP Interfaces ve VLAN İzolasyonu](03-cekirdek-yapilandirma/01-ip-interfaces-ve-vlan.md)
 *   [Media Realms (RTP Port Yönetimi)](03-cekirdek-yapilandirma/02-media-realms.md)
 *   [SIP Interfaces (Sinyalleşme Uçları)](03-cekirdek-yapilandirma/03-sip-interfaces.md)
+*   [SRD Mimarisi ve Ağ Sanallaştırma](03-cekirdek-yapilandirma/04-srd-mimarisi.md)
+
 
 ### 🚀 Bölüm 4: Sinyalleşme ve Yönlendirme
 *   [Proxy Sets ve Keep-Alive Mekanizması](04-sinyallesme-ve-yonlendirme/01-proxy-sets-ve-keep-alive.md)
