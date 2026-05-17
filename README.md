@@ -58,6 +58,8 @@ Eğitim setini modüler bir yapıda, sırasıyla takip etmeniz önerilir:
 *   [IP Interfaces ve VLAN İzolasyonu](docs/03-cekirdek-yapilandirma/01-ip-interfaces-ve-vlan.md) - *OAMP ve Medya izolasyonu.*
 *   [Media Realms (RTP Port Yönetimi)](docs/03-cekirdek-yapilandirma/02-media-realms.md)
 *   [SIP Interfaces (Sinyalleşme Uçları)](docs/03-cekirdek-yapilandirma/03-sip-interfaces.md)
+*   [SRD Mimarisi ve Ağ Sanallaştırma](docs/03-cekirdek-yapilandirma/04-srd-mimarisi.md) - *VRF benzeri mantıksal izolasyon ve multi-tenancy.*
+
 
 ### 🚀 Bölüm 4: Sinyalleşme ve Yönlendirme
 *   [Proxy Sets ve Keep-Alive Mekanizması](docs/04-sinyallesme-ve-yonlendirme/01-proxy-sets-ve-keep-alive.md)
