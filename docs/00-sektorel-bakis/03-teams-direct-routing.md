@@ -1,4 +1,4 @@
-﻿<!-- 
+<!-- 
   _   _       _ _             _    ____  
  | \ | | ___ | | |_ ___      / \  / ___| 
  |  \| |/ _ \| | __/ _ \    / _ \ \___ \ 
@@ -15,12 +15,12 @@ Modern iş dünyasında iletişim Microsoft Teams üzerinden dönüyor. Ancak Te
 
 Normalde Teams kullanırken dış hatları aramak için Microsoft'tan "Calling Plan" almanız gerekir (Pahalı ve her ülkede yok). **Direct Routing** ise şirketin mevcut operatörünü (Örn: Türk Telekom) Teams'e bağlamanıza izin verir.
 
-## 📌 AudioCodes SBC Burada Ne Yapar?
+## 📌 AudioCodes SBC Burada Ne Yapar? (Köprü Görevi)
 
-1.  **Protokol Uyumu:** Teams, bulut üzerinden sadece **TLS (Şifreli SIP)** ve **SRTP (Şifreli Ses)** kabul eder. Operatörler ise genellikle UDP/TCP ve şifresiz RTP kullanır. AudioCodes bu iki farklı dünyayı birbirine bağlar (Transcoding & Trans-shaping).
-2.  **Sertifika Yönetimi:** Teams ile konuşmak için SBC üzerinde geçerli bir SSL sertifikası (Public CA) olması gerekir.
-3.  **Güvenlik:** Teams sunucularından gelen trafiği doğrular ve iç ağa güvenli bir şekilde aktarır.
-4.  **Media Bypass:** Eğer kullanıcı ve SBC aynı ağdaysa, ses trafiğinin buluta gidip gelmesine gerek kalmadan doğrudan (local) akmasını sağlar.
+1.  **Protokol Uyumu ve SILK Codec:** Teams, bulut üzerinden **TLS (Şifreli SIP)** ve **SRTP (Şifreli Ses)** mecburiyeti koşar. Operatörler ise genellikle UDP/TCP ve şifresiz RTP kullanır. AudioCodes bu iki farklı dünyayı birbirine bağlar. Ayrıca Teams, modern **SILK/Opus** codec kullanır. Eğer SBC'nizde DSP varsa SILK'i G.711'e çevirebilirsiniz.
+2.  **Sertifika Yönetimi ve SNI:** Teams ile konuşmak için SBC üzerinde geçerli bir SSL sertifikası (Örn: DigiCert/GoDaddy) olması şarttır. Teams sunucuları bağlantıyı kurarken SBC'nin FQDN adresini kontrol etmek için TLS seviyesinde **SNI (Server Name Indication)** başlığını okur. SNI uyuşmazlığında bağlantı kurulmaz (`SIP OPTIONS` düşer).
+3.  **Güvenlik:** Microsoft veri merkezlerinden gelen trafiği doğrular (FQDN tabanlı ACL kuralları) ve iç ağa süzerek aktarır.
+4.  **Media Bypass (ICE/STUN):** Eğer ofisteki bir kullanıcı (Teams Client) ofisteki AudioCodes SBC üzerinden arama yapıyorsa, ses trafiğinin taa İrlanda'daki Microsoft bulutuna gidip gelmesine (Tromboning/Hairpinning) gerek yoktur. **ICE/STUN** protokolleri sayesinde Teams Client ile AudioCodes SBC aynı lokal ağda olduklarını keşfederler ve RTP (Medya) doğrudan lokal ağda akar. Bu, gecikmeyi ve bant genişliği israfını önler.
 
 ## 📌 Neden Önemlidir?
 
