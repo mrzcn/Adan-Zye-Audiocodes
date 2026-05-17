@@ -96,6 +96,8 @@ Eğitim setini modüler bir yapıda, sırasıyla takip etmeniz önerilir:
 *   [INI Dosyası ve CLI Referansı](docs/08-ekler-ve-referanslar/03-ini-dosyasi-referansi.md)
 *   [Faks (T.38) Yapılandırma Rehberi](docs/08-ekler-ve-referanslar/04-faks-t38-yapilandirma.md)
 *   [Faydalı Araçlar ve Yardımcı Yazılımlar (Utilities)](docs/08-ekler-ve-referanslar/05-faydali-araclar-ve-utility.md) - *Syslog Viewer, DConvert ve BootP.*
+*   [ACP Sertifikasyon Sınav Soru ve Cevapları](docs/08-ekler-ve-referanslar/06-sertifikasyon-sinav-sorulari.md) - *Resmi sınav senaryoları ve L3 düzeyinde teknik çözümleri.*
+
 
 ---
 
