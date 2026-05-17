@@ -109,6 +109,36 @@ Eğer geçiş sonrası çözülemeyen bir ses veya sinyalleşme arızası yaşan
 > [!IMPORTANT]
 > Cihazınızın garanti/CHAMPS desteği yoksa yeni major firmware dosyalarını yüklemeniz lisans engeline takılabilir. Güncellemeye başlamadan önce Nolto Partner ekibinden destek durumunuzu teyit edin.
 
+---
+
+## 📌 AudioCodes CHAMPS Bakım Sözleşmesi Olmamasının Kritik Riskleri
+
+**CHAMPS (Collaborative Hardware and Software Maintenance Program Support)**, AudioCodes cihazlarının resmi üretici garantisini ve teknik destek altyapısını devam ettiren yıllık bakım sözleşmesidir. 
+
+Bir şirketin veya entegratörün CHAMPS sözleşmesini almaması veya yenilemeyerek süresinin dolmasına (expired) izin vermesi durumunda **mahrum kalacağı kritik teknik haklar ve karşılaşacağı operasyonel riskler** şunlardır:
+
+### 1. Yazılım Güncellemeleri ve Sıfırıncı Gün (Zero-Day) Açıkları Güvenlik Riskleri
+*   **Yazılımdan Mahrum Kalma:** Aktif bir CHAMPS sözleşmesi olmayan cihazlar için AudioCodes Yazılım Portalı (Software Portal) kapatılır. Cihaza ait yeni `.cmp` firmware sürümleri ve yama (patch) dosyaları indirilip yüklenemez.
+*   **Güvenlik Zafiyeti:** İnternet bacağına açık çalışan bir SBC için bu durum ölümcüldür. Sektörde sıkça görülen SIP/TLS veya web sunucu zafiyetlerine karşı yayınlanan kritik güvenlik yamaları (Security Patches) cihaza uygulanamaz ve cihaz siber saldırılara açık hedef haline gelir.
+
+### 2. Resmi Teknik Destek (TAC Support) Kaybı
+*   **Bilet (Ticket) Açamama:** Cihazda çözülemeyen bir ses kesintisi, yönlendirme hatası veya Teams entegrasyon arızası oluştuğunda doğrudan AudioCodes Technical Assistance Center (TAC) veya yetkili Tier-1 partneri Nolto üzerinden resmi destek bileti açılamaz.
+*   **Saha Mühendisliği Kaybı:** Sistemde yaşanan acil durumlarda (Severity-1) doğrudan üretici mühendislerinin cihaza uzaktan (Webex/SSH) bağlanarak müdahale etme ve sorun giderme (Troubleshooting) hakkı tamamen sonlanır.
+
+### 3. Donanım Garanti ve Hızlı Değişim (RMA) Hizmetlerinden Mahrumiyet
+*   **Donanım Bozulduğunda Çözümsüzlük:** Cihazın güç kaynağı, ethernet portu, anakartı veya donanımsal DSP modülleri arızalandığında ücretsiz donanım değişimi yapılamaz.
+*   **AHR ve R&R Kaybı:** CHAMPS kapsamında sunulan **AHR (Advanced Hardware Replacement - arızalı cihaz gitmeden yenisinin adrese yollanması)** ve **R&R (Return & Repair - tamir/değişim)** süreçleri çalışmaz. Cihaz bozulduğunda hurdaya ayrılır ve sıfır bedelle yepyeni bir donanım satın alınması gerekir.
+
+### 4. Microsoft Teams Direct Routing Servis Kesintisi Riski
+*   Microsoft Teams, bulut altyapısını sürekli günceller. Teams bacağındaki API, sertifika şemaları veya TLS şifreleme gereksinimleri güncellendiğinde AudioCodes SBC'nin de uyum sağlamak için firmware güncellemesi alması zorunludur.
+*   CHAMPS sözleşmesi olmadığı için güncellenemeyen bir SBC, Microsoft'un yaptığı bulut güncellemeleri sonrasında Teams bacağı ile konuşmayı keser ve şirketin dış arama (PSTN) trafiği tamamen felç olur.
+
+### 5. Lisans Taşıma (License Migration) ve RMA Transfer Engeli
+*   Fiziksel olarak yanan veya bozulan donanım üzerindeki "Node-Locked" (MAC adresine kilitli) lisans anahtarlarının yeni bir yedek cihaza aktarılması hakkı **yalnızca** aktif bir CHAMPS veya donanım garanti süreci altında mümkündür.
+*   Sözleşme yoksa, binlerce dolar ödenerek satın alınmış eş zamanlı çağrı (SBC Session) lisansları, bozulan cihazla birlikte çöp olur ve yeni donanım için tüm lisansların baştan satın alınması gerekir.
+
+---
+
 
 ---
 <p align="center">
