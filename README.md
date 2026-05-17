@@ -87,6 +87,8 @@ Eğitim setini modüler bir yapıda, sırasıyla takip etmeniz önerilir:
 
 ### 🛡️ Bölüm 8: En İyi Uygulamalar (Best Practices)
 *   [Saha Kurulum Standartları ve Güvenlik](docs/09-en-iyi-uygulamalar/01-saha-kurulum-standartlari.md) - *Projeyi canlıya almadan önceki kontrol listesi.*
+*   [İsimlendirme ve İndeks Standartları](docs/09-en-iyi-uygulamalar/02-isimlendirme-ve-indeks-standartlari.md) - *Simetrik indeks yapılandırması ve isimlendirme prefix standartları.*
+
 
 ### 📚 Bölüm 9: Ekler ve Referanslar
 *   [SIP Terimler Sözlüğü](docs/08-ekler-ve-referanslar/01-sip-terimler-sozlugu.md) - *Tüm SIP yanıt kodları ve medya terimleri.*
